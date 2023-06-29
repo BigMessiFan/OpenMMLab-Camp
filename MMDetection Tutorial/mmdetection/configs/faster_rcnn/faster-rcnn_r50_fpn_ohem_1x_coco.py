@@ -1,3 +1,2 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:d91a2568bb307e43ae546da8341f731010f9636d1851b1340763c1f243ce1083
-size 118
+_base_ = './faster-rcnn_r50_fpn_1x_coco.py'
+model = dict(train_cfg=dict(rcnn=dict(sampler=dict(type='OHEMSampler'))))

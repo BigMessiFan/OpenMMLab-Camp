@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:dd383db8f2d11c9d906014e2fcd048ad701a1e88a5a2e57f3683d5937a9bc0aa
-size 474
+# Copyright (c) OpenMMLab. All rights reserved.
+
+from mmyolo.models import YOLOv5CSPDarknet
+from mmyolo.registry import MODELS
+
+
+@MODELS.register_module()
+class DummyYOLOv5CSPDarknet(YOLOv5CSPDarknet):
+    """Implements a dummy YOLOv5CSPDarknet wrapper for demonstration purpose.
+    Args:
+        **kwargs: All the arguments are passed to the parent class.
+    """
+
+    def __init__(self, **kwargs) -> None:
+        print('Hello world!')
+        super().__init__(**kwargs)

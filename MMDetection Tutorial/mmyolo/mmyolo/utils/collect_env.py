@@ -1,3 +1,21 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:293990392f566d6cb36024427af1b8e7bc3b7edf4eeeed1118f38b944e7ad2cb
-size 606
+# Copyright (c) OpenMMLab. All rights reserved.
+import mmcv
+import mmdet
+from mmengine.utils import get_git_hash
+from mmengine.utils.dl_utils import collect_env as collect_base_env
+
+import mmyolo
+
+
+def collect_env() -> dict:
+    """Collect the information of the running environments."""
+    env_info = collect_base_env()
+    env_info['MMCV'] = mmcv.__version__
+    env_info['MMDetection'] = mmdet.__version__
+    env_info['MMYOLO'] = mmyolo.__version__ + '+' + get_git_hash()[:7]
+    return env_info
+
+
+if __name__ == '__main__':
+    for name, val in collect_env().items():
+        print(f'{name}: {val}')

@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:54a63e89f15d3b44f57f04ed63b5c9cf75ff4cab422ffec7876121ff8d88d3bd
-size 102
+version: 2
+
+formats: all
+
+python:
+  version: 3.7
+  install:
+    - requirements: requirements/docs.txt

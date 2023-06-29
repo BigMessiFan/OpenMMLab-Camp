@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:67bd42167319fb4f99d71c445bb6fdc189404427af37cbcc78eaf0d8391b133f
-size 311
+_base_ = 'faster-rcnn_r50_fpn_ms-3x_coco.py'
+
+model = dict(
+    backbone=dict(
+        depth=101,
+        norm_cfg=dict(requires_grad=False),
+        norm_eval=True,
+        style='caffe',
+        init_cfg=dict(
+            type='Pretrained',
+            checkpoint='open-mmlab://detectron2/resnet101_caffe')))

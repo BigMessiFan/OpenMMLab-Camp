@@ -1,3 +1,2 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:7ca2df961ef0823915bc4823030be0c835b1425d3d4906210cf163cb3c45a072
-size 138
+_base_ = './reppoints-moment_r50_fpn-gn_head-gn_1x_coco.py'
+model = dict(bbox_head=dict(transform_method='minmax', use_grid_points=True))

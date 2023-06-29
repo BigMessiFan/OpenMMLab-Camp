@@ -1,3 +1,9 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:80256b00b2abcbc107468777ee9777219efe72b48c4f666f944fcf077c1020ab
-size 314
+_base_ = 'faster-rcnn_r50_fpg_crop640-50e_coco.py'
+
+norm_cfg = dict(type='BN', requires_grad=True)
+model = dict(
+    neck=dict(out_channels=128, inter_channels=128),
+    rpn_head=dict(in_channels=128),
+    roi_head=dict(
+        bbox_roi_extractor=dict(out_channels=128),
+        bbox_head=dict(in_channels=128)))

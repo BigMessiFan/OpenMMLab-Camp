@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c25b2eac8bf3f9e4845c1402d2ec1968e3cc3d5d0199f9fbf0e0a097242659d4
-size 216
+_base_ = '../faster_rcnn/faster-rcnn_r50_fpn_1x_coco.py'
+model = dict(
+    backbone=dict(
+        dcn=dict(type='DCNv2', deform_groups=1, fallback_on_stride=False),
+        stage_with_dcn=(False, True, True, True)))

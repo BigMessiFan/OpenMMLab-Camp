@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:d35aa86b040ab05855f64404e2d59feecc8a5a36e1366a5c33a18517a6afc42f
-size 457
+_base_ = './rtmdet_l_syncbn_fast_8xb32-300e_coco.py'
+
+# ========================modified parameters======================
+deepen_factor = 1.33
+widen_factor = 1.25
+
+# =======================Unmodified in most cases==================
+model = dict(
+    backbone=dict(deepen_factor=deepen_factor, widen_factor=widen_factor),
+    neck=dict(deepen_factor=deepen_factor, widen_factor=widen_factor),
+    bbox_head=dict(head_module=dict(widen_factor=widen_factor)))

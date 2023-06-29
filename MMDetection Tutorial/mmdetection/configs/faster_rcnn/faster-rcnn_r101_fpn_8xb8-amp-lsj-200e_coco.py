@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:6183eb55b7c9af504958a2812c45abda25ffac38f3c9b83252f70ff03338eeab
-size 215
+_base_ = './faster-rcnn_r50_fpn_8xb8-amp-lsj-200e_coco.py'
+
+model = dict(
+    backbone=dict(
+        depth=101,
+        init_cfg=dict(type='Pretrained',
+                      checkpoint='torchvision://resnet101')))

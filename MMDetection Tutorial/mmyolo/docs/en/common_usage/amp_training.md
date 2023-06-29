@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:66b911ad3cdd222c9e27c4715ed3537a6276607eec42adc14ae2673588a1406e
-size 375
+# Automatic mixed precision（AMP）training
+
+To enable Automatic Mixing Precision (AMP) training, add `--amp` to the end of the training command, which is as follows:
+
+```shell
+python tools/train.py python ./tools/train.py ${CONFIG} --amp
+```
+
+Specific examples are as follows:
+
+```shell
+python tools/train.py configs/yolov5/yolov5_s-v61_syncbn_8xb16-300e_coco.py --amp
+```

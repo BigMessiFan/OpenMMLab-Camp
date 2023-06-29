@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:26e3cc11c29147d1150adb71928931516e31b40522ee6584f254447766a70e51
-size 220
+_base_ = './centernet-update_r50_fpn_8xb8-amp-lsj-200e_coco.py'
+
+model = dict(
+    backbone=dict(
+        depth=101,
+        init_cfg=dict(type='Pretrained',
+                      checkpoint='torchvision://resnet101')))

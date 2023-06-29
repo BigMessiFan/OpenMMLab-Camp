@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:8e1385b44f53ac07e9312b2c47aab2d34b39dbfae217fba45792afdc99f2939e
-size 384
+_base_ = './mask-rcnn_hrnetv2p-w40_1x_coco.py'
+
+# learning policy
+max_epochs = 24
+train_cfg = dict(max_epochs=max_epochs)
+param_scheduler = [
+    dict(
+        type='LinearLR', start_factor=0.001, by_epoch=False, begin=0, end=500),
+    dict(
+        type='MultiStepLR',
+        begin=0,
+        end=max_epochs,
+        by_epoch=True,
+        milestones=[16, 22],
+        gamma=0.1)
+]

@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:399ac1bac246ed9193b79a17040fca3f0c5d3807cffefa0775851184d7d5cc25
-size 256
+_base_ = './cascade-mask-rcnn_s50_fpn_syncbn-backbone+head_ms-1x_coco.py'
+model = dict(
+    backbone=dict(
+        stem_channels=128,
+        depth=101,
+        init_cfg=dict(type='Pretrained',
+                      checkpoint='open-mmlab://resnest101')))

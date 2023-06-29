@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:3b555af9d1cf26f8642d55d2585d9e1710a7682bb308edfcb47b58d822dba60f
-size 324
+# Copyright (c) OpenMMLab. All rights reserved.
+from mmdet.registry import MODELS
+from .cascade_rcnn import CascadeRCNN
+
+
+@MODELS.register_module()
+class SCNet(CascadeRCNN):
+    """Implementation of `SCNet <https://arxiv.org/abs/2012.10150>`_"""
+
+    def __init__(self, **kwargs) -> None:
+        super().__init__(**kwargs)

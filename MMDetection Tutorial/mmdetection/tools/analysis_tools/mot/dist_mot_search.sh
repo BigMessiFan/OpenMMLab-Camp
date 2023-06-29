@@ -1,3 +1,9 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:495ffff36dd33d2340c2dc8f7bd8d4e203193eba9cf178d0f3164fbeab29cd78
-size 258
+#!/usr/bin/env bash
+
+CONFIG=$1
+GPUS=$2
+PORT=${PORT:-29500}
+
+PYTHONPATH="$(dirname $0)/..":$PYTHONPATH \
+python -m torch.distributed.launch --nproc_per_node=$GPUS --master_port=$PORT \
+    $(dirname "$0")/mot_param_search.py $CONFIG --launcher pytorch ${@:3}

@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:24b1f4670225ea7579707263fb1c46d81937194ddaf923f4c83fc7474091c50d
-size 457
+_base_ = './solov2_r50_fpn_ms-3x_coco.py'
+
+# model settings
+model = dict(
+    backbone=dict(
+        depth=101,
+        init_cfg=dict(checkpoint='torchvision://resnet101'),
+        dcn=dict(type='DCNv2', deformable_groups=1, fallback_on_stride=False),
+        stage_with_dcn=(False, True, True, True)),
+    mask_head=dict(
+        mask_feature_head=dict(conv_cfg=dict(type='DCNv2')),
+        dcn_cfg=dict(type='DCNv2'),
+        dcn_apply_to_all_conv=True))

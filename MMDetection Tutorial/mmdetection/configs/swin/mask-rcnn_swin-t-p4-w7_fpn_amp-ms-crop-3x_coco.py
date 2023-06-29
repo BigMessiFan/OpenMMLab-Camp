@@ -1,3 +1,3 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e496c14562efe297ad9b63c0ef5bc2a942f062702b767c96048058b1e0739199
-size 170
+_base_ = './mask-rcnn_swin-t-p4-w7_fpn_ms-crop-3x_coco.py'
+# Enable automatic-mixed-precision training with AmpOptimWrapper.
+optim_wrapper = dict(type='AmpOptimWrapper')

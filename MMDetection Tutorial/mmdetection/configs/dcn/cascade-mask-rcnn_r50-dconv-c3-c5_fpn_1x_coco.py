@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f10524e07bca306eabfcb74cb15ba10728bc0023f217a11b2fc96186cc6f425b
-size 221
+_base_ = '../cascade_rcnn/cascade-mask-rcnn_r50_fpn_1x_coco.py'
+model = dict(
+    backbone=dict(
+        dcn=dict(type='DCN', deform_groups=1, fallback_on_stride=False),
+        stage_with_dcn=(False, True, True, True)))

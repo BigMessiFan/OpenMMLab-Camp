@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:aa8e94807d862058404dc68e1f063f2b6539fb173923abd17aa7724d120ef3f3
-size 182
+_base_ = [
+    '../_base_/models/cascade-mask-rcnn_r50_fpn.py',
+    '../_base_/datasets/coco_instance.py',
+    '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py'
+]

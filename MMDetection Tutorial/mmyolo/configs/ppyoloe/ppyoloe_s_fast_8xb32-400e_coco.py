@@ -1,3 +1,9 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:372d94f8772d93fc6e20dd9a29f989bd21588291c433f70f19ba46aa2cfba6d4
-size 235
+_base_ = './ppyoloe_s_fast_8xb32-300e_coco.py'
+
+max_epochs = 400
+
+model = dict(train_cfg=dict(initial_epoch=133))
+
+default_hooks = dict(param_scheduler=dict(total_epochs=int(max_epochs * 1.2)))
+
+train_cfg = dict(max_epochs=max_epochs)

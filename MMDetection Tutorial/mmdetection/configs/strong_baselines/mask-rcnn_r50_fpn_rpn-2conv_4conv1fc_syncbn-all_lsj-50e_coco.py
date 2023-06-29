@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:1657907023fd5e2d3b4655758b7eb10beb543c1d16e536f1b5e0bfa6e54e2ec5
-size 231
+_base_ = 'mask-rcnn_r50_fpn_rpn-2conv_4conv1fc_syncbn-all_lsj-100e_coco.py'
+
+# Use RepeatDataset to speed up training
+# change repeat time from 4 (for 100 epochs) to 2 (for 50 epochs)
+train_dataloader = dict(dataset=dict(times=2))

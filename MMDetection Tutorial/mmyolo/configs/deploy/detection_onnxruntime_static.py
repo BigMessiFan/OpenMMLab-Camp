@@ -1,3 +1,15 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5fbf9445cf7649ce9a048cd84329ce3eae8f2660e911ac7be69809b72d213c2c
-size 439
+_base_ = ['./base_static.py']
+codebase_config = dict(
+    type='mmyolo',
+    task='ObjectDetection',
+    model_type='end2end',
+    post_processing=dict(
+        score_threshold=0.05,
+        confidence_threshold=0.005,
+        iou_threshold=0.5,
+        max_output_boxes_per_class=200,
+        pre_top_k=5000,
+        keep_top_k=100,
+        background_label_id=-1),
+    module=['mmyolo.deploy'])
+backend_config = dict(type='onnxruntime')

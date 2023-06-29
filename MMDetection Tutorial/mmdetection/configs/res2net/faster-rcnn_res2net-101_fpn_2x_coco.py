@@ -1,3 +1,10 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:abfc34628ce705a25e75b02efdba703ba1408e062418af00b61ca1487befd060
-size 291
+_base_ = '../faster_rcnn/faster-rcnn_r50_fpn_2x_coco.py'
+model = dict(
+    backbone=dict(
+        type='Res2Net',
+        depth=101,
+        scales=4,
+        base_width=26,
+        init_cfg=dict(
+            type='Pretrained',
+            checkpoint='open-mmlab://res2net101_v1d_26w_4s')))

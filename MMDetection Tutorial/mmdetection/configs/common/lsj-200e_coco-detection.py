@@ -1,3 +1,18 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:dbf9c464c0a6f10b42109ae45f03dde8ab0bd149e93f142916ca6f0fd543688f
-size 380
+_base_ = './lsj-100e_coco-detection.py'
+
+# 8x25=200e
+train_dataloader = dict(dataset=dict(times=8))
+
+# learning rate
+param_scheduler = [
+    dict(
+        type='LinearLR', start_factor=0.067, by_epoch=False, begin=0,
+        end=1000),
+    dict(
+        type='MultiStepLR',
+        begin=0,
+        end=25,
+        by_epoch=True,
+        milestones=[22, 24],
+        gamma=0.1)
+]

@@ -1,3 +1,17 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5f3e0e66b852f779d543206ff0b9b55fc90c9655b644ea530b5abf5804ce8a18
-size 429
+_base_ = './reppoints-moment_r50_fpn-gn_head-gn_1x_coco.py'
+
+max_epochs = 24
+
+train_cfg = dict(
+    type='EpochBasedTrainLoop', max_epochs=max_epochs, val_interval=1)
+param_scheduler = [
+    dict(
+        type='LinearLR', start_factor=0.001, by_epoch=False, begin=0, end=500),
+    dict(
+        type='MultiStepLR',
+        begin=0,
+        end=max_epochs,
+        by_epoch=True,
+        milestones=[16, 22],
+        gamma=0.1)
+]

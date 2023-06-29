@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c5180209b53a5582982bdd97f20ae6a62fc893a9a2346b14ba2a6ff14573bab6
-size 493
+_base_ = './rpn_r50_fpn_1x_coco.py'
+# use caffe img_norm
+model = dict(
+    data_preprocessor=dict(
+        type='DetDataPreprocessor',
+        mean=[103.530, 116.280, 123.675],
+        std=[1.0, 1.0, 1.0],
+        bgr_to_rgb=False,
+        pad_size_divisor=32),
+    backbone=dict(
+        norm_cfg=dict(requires_grad=False),
+        norm_eval=True,
+        style='caffe',
+        init_cfg=dict(
+            type='Pretrained',
+            checkpoint='open-mmlab://detectron2/resnet50_caffe')))

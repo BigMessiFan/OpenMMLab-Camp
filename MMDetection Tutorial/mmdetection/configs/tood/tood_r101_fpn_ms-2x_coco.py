@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:d44dc9ea1bdc63bc183eac4cad1144b55db539fb42e695fd20376ed80c58b8a0
-size 196
+_base_ = './tood_r50_fpn_ms-2x_coco.py'
+
+model = dict(
+    backbone=dict(
+        depth=101,
+        init_cfg=dict(type='Pretrained',
+                      checkpoint='torchvision://resnet101')))

@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c769a08a7dac2eac1eb49bfd92924d571e367435f742121ab557dd9e32cfb444
-size 305
+_base_ = 'mask-rcnn_regnetx-3.2GF_fpn_1x_coco.py'
+model = dict(
+    backbone=dict(
+        dcn=dict(type='DCNv2', deform_groups=1, fallback_on_stride=False),
+        stage_with_dcn=(False, True, True, True),
+        init_cfg=dict(
+            type='Pretrained', checkpoint='open-mmlab://regnetx_3.2gf')))

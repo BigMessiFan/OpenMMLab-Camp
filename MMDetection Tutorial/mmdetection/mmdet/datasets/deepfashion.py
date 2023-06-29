@@ -1,3 +1,19 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:13560f8f68318eb6898f7e8db5457261c2609e33aec31fef83d90f397cb5e08f
-size 819
+# Copyright (c) OpenMMLab. All rights reserved.
+from mmdet.registry import DATASETS
+from .coco import CocoDataset
+
+
+@DATASETS.register_module()
+class DeepFashionDataset(CocoDataset):
+    """Dataset for DeepFashion."""
+
+    METAINFO = {
+        'classes': ('top', 'skirt', 'leggings', 'dress', 'outer', 'pants',
+                    'bag', 'neckwear', 'headwear', 'eyeglass', 'belt',
+                    'footwear', 'hair', 'skin', 'face'),
+        # palette is a list of color tuples, which is used for visualization.
+        'palette': [(0, 192, 64), (0, 64, 96), (128, 192, 192), (0, 64, 64),
+                    (0, 192, 224), (0, 192, 192), (128, 192, 64), (0, 192, 96),
+                    (128, 32, 192), (0, 0, 224), (0, 0, 64), (0, 160, 192),
+                    (128, 0, 96), (128, 0, 192), (0, 32, 192)]
+    }

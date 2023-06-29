@@ -1,3 +1,23 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:306e0ecdf3805af458b7ec3f3907c85e37d811fe365487f2f39605cf3dd3a857
-size 609
+# Copyright (c) OpenMMLab. All rights reserved.
+
+__version__ = '0.5.0'
+
+from typing import Tuple
+
+short_version = __version__
+
+
+def parse_version_info(version_str: str) -> Tuple:
+    """Parse version info of MMYOLO."""
+    version_info = []
+    for x in version_str.split('.'):
+        if x.isdigit():
+            version_info.append(int(x))
+        elif x.find('rc') != -1:
+            patch_version = x.split('rc')
+            version_info.append(int(patch_version[0]))
+            version_info.append(f'rc{patch_version[1]}')
+    return tuple(version_info)
+
+
+version_info = parse_version_info(__version__)

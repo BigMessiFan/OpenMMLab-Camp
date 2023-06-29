@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a09d74c195a5dc5fea1120a18ad36d3fa795e56493c087a683354c9e158c7252
-size 228
+_base_ = './queryinst_r50_fpn_300-proposals_crop-ms-480-800-3x_coco.py'
+
+model = dict(
+    backbone=dict(
+        depth=101,
+        init_cfg=dict(type='Pretrained',
+                      checkpoint='torchvision://resnet101')))

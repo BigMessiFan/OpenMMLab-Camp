@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:8673277b23043628abc1634957d8592049491ddc0c1ba4c5bc6b886f8d1c4d76
-size 326
+_base_ = './dino-5scale_swin-l_8xb2-12e_coco.py'
+max_epochs = 36
+train_cfg = dict(
+    type='EpochBasedTrainLoop', max_epochs=max_epochs, val_interval=1)
+param_scheduler = [
+    dict(
+        type='MultiStepLR',
+        begin=0,
+        end=max_epochs,
+        by_epoch=True,
+        milestones=[27, 33],
+        gamma=0.1)
+]

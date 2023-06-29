@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:585b9773cc1e49a3f02340b38b62bacbfcbde0ba8c5cfb504a6a4d6a11c2c8aa
-size 493
+_base_ = ['./base_dynamic.py']
+backend_config = dict(
+    type='tensorrt',
+    common_config=dict(fp16_mode=True, max_workspace_size=1 << 30),
+    model_inputs=[
+        dict(
+            input_shapes=dict(
+                input=dict(
+                    min_shape=[1, 3, 192, 192],
+                    opt_shape=[1, 3, 640, 640],
+                    max_shape=[1, 3, 960, 960])))
+    ])
+use_efficientnms = False  # whether to replace TRTBatchedNMS plugin with EfficientNMS plugin # noqa E501

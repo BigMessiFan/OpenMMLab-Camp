@@ -1,3 +1,9 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:826340b92240bb7f0bf69371125602d6acec9b0e9da8c72c8b529dac151e2843
-size 300
+_base_ = ['../../../configs/rtmdet/rtmdet_s_syncbn_fast_8xb32-300e_coco.py']
+
+custom_imports = dict(imports=[
+    'projects.assigner_visualization.detectors',
+    'projects.assigner_visualization.dense_heads'
+])
+
+model = dict(
+    type='YOLODetectorAssigner', bbox_head=dict(type='RTMHeadAssigner'))

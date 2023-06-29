@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:06bed8034bca9f0db9569276a57f1e89eb646498e4b4fbed1acd2643a575c8fe
-size 183
+_base_ = [
+    '../_base_/models/faster-rcnn_r50-caffe-dc5.py',
+    '../_base_/datasets/coco_detection.py',
+    '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py'
+]

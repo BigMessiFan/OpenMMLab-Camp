@@ -1,3 +1,17 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c6c48f3e99ff3bf012616080458944e40e2ca0e7cbb24d43197020a334853e09
-size 530
+_base_ = 'cascade-mask-rcnn_regnetx-3.2GF_fpn_ms-3x_coco.py'
+model = dict(
+    backbone=dict(
+        type='RegNet',
+        arch='regnetx_4.0gf',
+        out_indices=(0, 1, 2, 3),
+        frozen_stages=1,
+        norm_cfg=dict(type='BN', requires_grad=True),
+        norm_eval=True,
+        style='pytorch',
+        init_cfg=dict(
+            type='Pretrained', checkpoint='open-mmlab://regnetx_4.0gf')),
+    neck=dict(
+        type='FPN',
+        in_channels=[80, 240, 560, 1360],
+        out_channels=256,
+        num_outs=5))

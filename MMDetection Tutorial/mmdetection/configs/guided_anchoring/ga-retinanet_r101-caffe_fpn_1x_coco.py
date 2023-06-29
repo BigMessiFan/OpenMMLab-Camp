@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:9aa6f846c0926c4d580ac359686fbde37b6a2fc6b6377d6df9eae338e1d65b5a
-size 225
+_base_ = './ga-retinanet_r50-caffe_fpn_1x_coco.py'
+model = dict(
+    backbone=dict(
+        depth=101,
+        init_cfg=dict(
+            type='Pretrained',
+            checkpoint='open-mmlab://detectron2/resnet101_caffe')))

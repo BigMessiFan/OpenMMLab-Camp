@@ -1,3 +1,4 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:249351ebadf0cdf20b7ccfe55ceccc91c43b20ec79d369f497e5f576588585cb
-size 154
+_base_ = './mask-rcnn_r50_fpn_1x_coco.py'
+
+# Enable automatic-mixed-precision training with AmpOptimWrapper.
+optim_wrapper = dict(type='AmpOptimWrapper')

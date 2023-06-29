@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:8c4b10098057399855986b14a27d35b6bf85ddab1a1f4f9e702ae0e2fe795c14
-size 450
+_base_ = './reppoints-moment_r50_fpn-gn_head-gn_1x_coco.py'
+model = dict(
+    bbox_head=dict(transform_method='minmax', use_grid_points=True),
+    # training and testing settings
+    train_cfg=dict(
+        init=dict(
+            assigner=dict(
+                _delete_=True,
+                type='MaxIoUAssigner',
+                pos_iou_thr=0.5,
+                neg_iou_thr=0.4,
+                min_pos_iou=0,
+                ignore_iof_thr=-1))))

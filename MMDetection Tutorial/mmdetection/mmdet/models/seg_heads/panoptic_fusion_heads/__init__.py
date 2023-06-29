@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:11f32fc98c3ba5becfaee539d3b09306c5c62eaa6244e8d8ac472d2a2dfcfc87
-size 285
+# Copyright (c) OpenMMLab. All rights reserved.
+from .base_panoptic_fusion_head import \
+    BasePanopticFusionHead  # noqa: F401,F403
+from .heuristic_fusion_head import HeuristicFusionHead  # noqa: F401,F403
+from .maskformer_fusion_head import MaskFormerFusionHead  # noqa: F401,F403

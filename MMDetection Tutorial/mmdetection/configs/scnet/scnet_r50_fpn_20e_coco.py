@@ -1,3 +1,15 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:0d1a2669730b8f15140dabee27c6de5120a193db2e775d94664b5cd46a4826ac
-size 374
+_base_ = './scnet_r50_fpn_1x_coco.py'
+# learning policy
+max_epochs = 20
+param_scheduler = [
+    dict(
+        type='LinearLR', start_factor=0.001, by_epoch=False, begin=0, end=500),
+    dict(
+        type='MultiStepLR',
+        begin=0,
+        end=max_epochs,
+        by_epoch=True,
+        milestones=[16, 19],
+        gamma=0.1)
+]
+train_cfg = dict(max_epochs=max_epochs)

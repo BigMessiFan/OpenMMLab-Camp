@@ -1,3 +1,17 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:9cbce26f81a48bd82b711211b1971b2326a14ccad9ca2a624508957be9f8fdfa
-size 722
+_base_ = './yolov6_s_syncbn_fast_8xb32-400e_coco.py'
+
+# ======================= Possible modified parameters =======================
+# -----model related-----
+# The scaling factor that controls the depth of the network structure
+deepen_factor = 0.33
+# The scaling factor that controls the width of the network structure
+widen_factor = 0.375
+
+# ============================== Unmodified in most cases ===================
+model = dict(
+    backbone=dict(deepen_factor=deepen_factor, widen_factor=widen_factor),
+    neck=dict(deepen_factor=deepen_factor, widen_factor=widen_factor),
+    bbox_head=dict(
+        type='YOLOv6Head',
+        head_module=dict(widen_factor=widen_factor),
+        loss_bbox=dict(iou_mode='siou')))

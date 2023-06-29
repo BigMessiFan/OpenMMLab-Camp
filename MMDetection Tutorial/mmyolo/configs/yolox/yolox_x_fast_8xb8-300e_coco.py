@@ -1,3 +1,12 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e7619b5d69b141dc150295ed9082f516373a5fb5aa2dbb7608f0aa631d7b9416
-size 465
+_base_ = './yolox_s_fast_8xb8-300e_coco.py'
+
+# ========================modified parameters======================
+deepen_factor = 1.33
+widen_factor = 1.25
+
+# =======================Unmodified in most cases==================
+# model settings
+model = dict(
+    backbone=dict(deepen_factor=deepen_factor, widen_factor=widen_factor),
+    neck=dict(deepen_factor=deepen_factor, widen_factor=widen_factor),
+    bbox_head=dict(head_module=dict(widen_factor=widen_factor)))

@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:b1a6d40b093681317f73648dda62e8655a51ca666f5207ff71a7e0e283e25e13
-size 273
+_base_ = './yolox_s_8xb8-300e_coco.py'
+
+# model settings
+model = dict(
+    backbone=dict(deepen_factor=1.0, widen_factor=1.0),
+    neck=dict(
+        in_channels=[256, 512, 1024], out_channels=256, num_csp_blocks=3),
+    bbox_head=dict(in_channels=256, feat_channels=256))

@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e3a050baf92b9bc56015a0018c796c85a4df1184d349e723d90ec684b4a19e49
-size 486
+# Copyright (c) OpenMMLab. All rights reserved.
+from .mask_target import mask_target
+from .structures import (BaseInstanceMasks, BitmapMasks, PolygonMasks,
+                         bitmap_to_polygon, polygon_to_bitmap)
+from .utils import encode_mask_results, mask2bbox, split_combined_polys
+
+__all__ = [
+    'split_combined_polys', 'mask_target', 'BaseInstanceMasks', 'BitmapMasks',
+    'PolygonMasks', 'encode_mask_results', 'mask2bbox', 'polygon_to_bitmap',
+    'bitmap_to_polygon'
+]

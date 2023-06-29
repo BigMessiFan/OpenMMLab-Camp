@@ -1,3 +1,9 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5fd81c64a01d6cd0bfc88b01d9a434532107bfa989cf2f27d5530b924ad91ffd
-size 445
+_base_ = ['soft-teacher_faster-rcnn_r50-caffe_fpn_180k_semi-0.1-coco.py']
+
+# 2% coco train2017 is set as labeled dataset
+labeled_dataset = _base_.labeled_dataset
+unlabeled_dataset = _base_.unlabeled_dataset
+labeled_dataset.ann_file = 'semi_anns/instances_train2017.1@2.json'
+unlabeled_dataset.ann_file = 'semi_anns/instances_train2017.1@2-unlabeled.json'
+train_dataloader = dict(
+    dataset=dict(datasets=[labeled_dataset, unlabeled_dataset]))

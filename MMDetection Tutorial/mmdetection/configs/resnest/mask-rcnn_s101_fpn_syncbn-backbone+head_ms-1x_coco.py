@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e6e1392b1df1b186bd07bd4708489c732fd559b89bf6ffaa4b9a63495202b0a6
-size 248
+_base_ = './mask-rcnn_s50_fpn_syncbn-backbone+head_ms-1x_coco.py'
+model = dict(
+    backbone=dict(
+        stem_channels=128,
+        depth=101,
+        init_cfg=dict(type='Pretrained',
+                      checkpoint='open-mmlab://resnest101')))

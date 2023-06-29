@@ -1,3 +1,10 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:3d62223ccb00cc409a6db70d35c5d6e9a34f57b2cad0305fd0d6c80b7c27398f
-size 251
+import torch
+
+from mmdet.models.task_modules import embed_similarity
+
+
+def test_embed_similarity():
+    """Test embed similarity."""
+    embeds = torch.rand(2, 3)
+    similarity = embed_similarity(embeds, embeds)
+    assert similarity.shape == (2, 2)

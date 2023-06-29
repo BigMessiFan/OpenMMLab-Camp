@@ -1,3 +1,10 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ca6a8abfd62f5fdafba16e18ef260cb71df18df716cee8da04c9a4e0cc865552
-size 312
+_base_ = [
+    '../_base_/models/retinanet_r50_fpn.py',
+    '../_base_/datasets/coco_detection.py',
+    '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py',
+    './retinanet_tta.py'
+]
+
+# optimizer
+optim_wrapper = dict(
+    optimizer=dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001))

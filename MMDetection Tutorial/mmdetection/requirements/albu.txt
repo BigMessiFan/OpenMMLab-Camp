@@ -1,3 +1,1 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c8e84e7c3820f969b9e48600bf1df5a141d6b1f1afc38ecc63dd5737eeaf33ec
-size 56
+albumentations>=0.3.2 --no-binary qudida,albumentations

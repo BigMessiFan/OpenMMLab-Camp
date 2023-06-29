@@ -1,3 +1,14 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:610e2fe8968d38c4575d830d4e12b3df6b649433c877c78b883c912b04328a91
-size 428
+_base_ = './cascade-mask-rcnn_r50_fpn_20e_coco.py'
+model = dict(
+    backbone=dict(
+        type='ResNeXt',
+        depth=101,
+        groups=64,
+        base_width=4,
+        num_stages=4,
+        out_indices=(0, 1, 2, 3),
+        frozen_stages=1,
+        norm_cfg=dict(type='BN', requires_grad=True),
+        style='pytorch',
+        init_cfg=dict(
+            type='Pretrained', checkpoint='open-mmlab://resnext101_64x4d')))

@@ -1,3 +1,6 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:b99e1a539d425aefaf5c9b5e3670ee49628a8ee7da0d76af54e1a37e1dbd2912
-size 203
+_base_ = './panoptic-fpn_r50_fpn_ms-3x_coco.py'
+model = dict(
+    backbone=dict(
+        depth=101,
+        init_cfg=dict(type='Pretrained',
+                      checkpoint='torchvision://resnet101')))

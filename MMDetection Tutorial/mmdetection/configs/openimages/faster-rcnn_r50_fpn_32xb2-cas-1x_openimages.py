@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:53f1915eb6d0b31e0868761309d892b038b3df3bd189992dbd221432424d03f3
-size 185
+_base_ = ['faster-rcnn_r50_fpn_32xb2-1x_openimages.py']
+
+# Use ClassAwareSampler
+train_dataloader = dict(
+    sampler=dict(_delete_=True, type='ClassAwareSampler', num_sample_class=1))

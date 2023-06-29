@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a5388a39230ddad6edb70ffbd29726b7a7a08717cd6881d2b9ce5e3e56dce286
-size 184
+_base_ = ['../../../configs/faster_rcnn/faster-rcnn_r50_fpn_1x_coco.py']
+
+custom_imports = dict(imports=['projects.example_project.dummy'])
+
+_base_.model.backbone.type = 'DummyResNet'

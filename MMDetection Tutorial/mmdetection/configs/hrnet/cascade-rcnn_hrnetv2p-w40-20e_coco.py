@@ -1,3 +1,12 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:37cd2d4ed51b8f16f731faf3a4f099d59d78ffcc2dc51ccc6da4d065371a8b97
-size 482
+_base_ = './cascade-rcnn_hrnetv2p-w32-20e_coco.py'
+# model settings
+model = dict(
+    backbone=dict(
+        type='HRNet',
+        extra=dict(
+            stage2=dict(num_channels=(40, 80)),
+            stage3=dict(num_channels=(40, 80, 160)),
+            stage4=dict(num_channels=(40, 80, 160, 320))),
+        init_cfg=dict(
+            type='Pretrained', checkpoint='open-mmlab://msra/hrnetv2_w40')),
+    neck=dict(type='HRFPN', in_channels=[40, 80, 160, 320], out_channels=256))

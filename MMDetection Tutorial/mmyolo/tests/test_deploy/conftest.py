@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a92f7f27e016bc774b628485dab133faa6846fa7b051972ab47fb0c3f80a4f0b
-size 318
+# Copyright (c) OpenMMLab. All rights reserved.
+import pytest
+
+
+@pytest.fixture(autouse=True)
+def init_test():
+    # init default scope
+    from mmdet.utils import register_all_modules as register_det
+
+    from mmyolo.utils import register_all_modules as register_yolo
+
+    register_yolo(True)
+    register_det(False)

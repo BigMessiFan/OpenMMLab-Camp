@@ -1,3 +1,19 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:368d2386ccaa3428a16a5dec47a6367fb6689e88c5c8887c561fcf6cbe390622
-size 260
+{
+    "patch_sizes": [
+      1024
+    ],
+    "patch_overlap_sizes": [
+      200
+    ],
+    "img_resize_ratio": [
+      1.0
+    ],
+    "min_img_ratio": 0.6,
+    "iof_thr": 0.7,
+    "padding": true,
+    "padding_value": [
+      104,
+      116,
+      124
+    ]
+}

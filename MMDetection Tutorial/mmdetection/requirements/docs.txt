@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5b0f03f4bc4bd3119f985ac28427bf6ae3391888a1aefb28f2d19bd77bba25ad
-size 209
+docutils==0.16.0
+myst-parser
+-e git+https://github.com/open-mmlab/pytorch_sphinx_theme.git#egg=pytorch_sphinx_theme
+sphinx==4.0.2
+sphinx-copybutton
+sphinx_markdown_tables
+sphinx_rtd_theme==0.5.2
+urllib3<2.0.0

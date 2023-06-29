@@ -1,3 +1,20 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:edf679ff9c4597d932277e72a63c89150e707283f38f79ec6c0c632d3da2d5a7
-size 682
+_base_ = [
+    '../_base_/models/retinanet_r50_fpn.py',
+    '../_base_/datasets/coco_detection.py',
+    '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py'
+]
+
+# model
+model = dict(
+    backbone=dict(
+        depth=18,
+        init_cfg=dict(type='Pretrained', checkpoint='torchvision://resnet18')),
+    neck=dict(in_channels=[64, 128, 256, 512]))
+optim_wrapper = dict(
+    optimizer=dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001))
+
+# TODO: support auto scaling lr
+# NOTE: `auto_scale_lr` is for automatically scaling LR,
+# USER SHOULD NOT CHANGE ITS VALUES.
+# base_batch_size = (8 GPUs) x (2 samples per GPU)
+# auto_scale_lr = dict(base_batch_size=16)

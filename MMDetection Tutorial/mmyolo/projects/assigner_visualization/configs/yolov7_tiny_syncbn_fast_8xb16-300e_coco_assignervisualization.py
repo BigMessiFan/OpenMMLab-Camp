@@ -1,3 +1,9 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e8f05cc92eaf8a50ccca96e1371062266c1ea46ef1a4fdf4056bf2e38995809b
-size 306
+_base_ = ['../../../configs/yolov7/yolov7_tiny_syncbn_fast_8x16b-300e_coco.py']
+
+custom_imports = dict(imports=[
+    'projects.assigner_visualization.detectors',
+    'projects.assigner_visualization.dense_heads'
+])
+
+model = dict(
+    type='YOLODetectorAssigner', bbox_head=dict(type='YOLOv7HeadAssigner'))

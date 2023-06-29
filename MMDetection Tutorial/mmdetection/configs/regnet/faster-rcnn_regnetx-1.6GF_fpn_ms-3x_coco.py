@@ -1,3 +1,17 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e2d23ba37d58ab1dc0ee8b818450f965f5c17b6aaf9e1b5a269e01008c55ef2c
-size 523
+_base_ = 'faster-rcnn_regnetx-3.2GF_fpn_ms-3x_coco.py'
+model = dict(
+    backbone=dict(
+        type='RegNet',
+        arch='regnetx_1.6gf',
+        out_indices=(0, 1, 2, 3),
+        frozen_stages=1,
+        norm_cfg=dict(type='BN', requires_grad=True),
+        norm_eval=True,
+        style='pytorch',
+        init_cfg=dict(
+            type='Pretrained', checkpoint='open-mmlab://regnetx_1.6gf')),
+    neck=dict(
+        type='FPN',
+        in_channels=[72, 168, 408, 912],
+        out_channels=256,
+        num_outs=5))

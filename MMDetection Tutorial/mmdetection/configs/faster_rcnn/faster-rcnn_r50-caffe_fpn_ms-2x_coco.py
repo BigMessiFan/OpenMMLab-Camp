@@ -1,3 +1,18 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:8f0f1b255f7b61712b579d4705c67d946e9cd1c135f02af4e9cc22127299ad6b
-size 505
+_base_ = './faster-rcnn_r50-caffe_fpn_ms-1x_coco.py'
+
+# MMEngine support the following two ways, users can choose
+# according to convenience
+# param_scheduler = [
+#     dict(
+#         type='LinearLR', start_factor=0.001, by_epoch=False, begin=0, end=500), # noqa
+#     dict(
+#         type='MultiStepLR',
+#         begin=0,
+#         end=12,
+#         by_epoch=True,
+#         milestones=[16, 23],
+#         gamma=0.1)
+# ]
+_base_.param_scheduler[1].milestones = [16, 23]
+
+train_cfg = dict(max_epochs=24)

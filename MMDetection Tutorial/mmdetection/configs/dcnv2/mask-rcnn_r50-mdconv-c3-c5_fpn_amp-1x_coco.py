@@ -1,3 +1,10 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:d7cabf480246cc450293a50e4a6ffae28eda1043c769293da6dbf3251d5c0f70
-size 393
+_base_ = '../mask_rcnn/mask-rcnn_r50_fpn_1x_coco.py'
+model = dict(
+    backbone=dict(
+        dcn=dict(type='DCNv2', deform_groups=1, fallback_on_stride=False),
+        stage_with_dcn=(False, True, True, True)))
+
+# MMEngine support the following two ways, users can choose
+# according to convenience
+# optim_wrapper = dict(type='AmpOptimWrapper')
+_base_.optim_wrapper.type = 'AmpOptimWrapper'

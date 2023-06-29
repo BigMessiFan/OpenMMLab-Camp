@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:31b44ee6481cc698139580f6cec4ea793732913405d19d77c8dd6272946d34b7
-size 206
+_base_ = './grid-rcnn_r50_fpn_gn-head_2x_coco.py'
+
+model = dict(
+    backbone=dict(
+        depth=101,
+        init_cfg=dict(type='Pretrained',
+                      checkpoint='torchvision://resnet101')))

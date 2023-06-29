@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:30f533b5d555190f60ad167466720246bf85ffb4c204947df9da379cef4ebf01
-size 401
+_base_ = './gfl_r50_fpn_ms-2x_coco.py'
+model = dict(
+    backbone=dict(
+        type='ResNet',
+        depth=101,
+        num_stages=4,
+        out_indices=(0, 1, 2, 3),
+        frozen_stages=1,
+        norm_cfg=dict(type='BN', requires_grad=True),
+        norm_eval=True,
+        style='pytorch',
+        init_cfg=dict(type='Pretrained',
+                      checkpoint='torchvision://resnet101')))

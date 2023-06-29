@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e3c4ff92db4803facc914d0a4ceaebad2acea5a31d4cd2fa7c27771e990eba23
-size 226
+_base_ = './htc_x101-32x4d_fpn_16xb1-20e_coco.py'
+model = dict(
+    backbone=dict(
+        type='ResNeXt',
+        groups=64,
+        init_cfg=dict(
+            type='Pretrained', checkpoint='open-mmlab://resnext101_64x4d')))

@@ -1,3 +1,14 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:60a00c63e6ce3127dc8a47aa67d0976b93f21a6608d4c940deb076d7be5b2f3f
-size 525
+_base_ = './solov2-light_r50_fpn_ms-3x_coco.py'
+
+# model settings
+model = dict(
+    backbone=dict(
+        dcn=dict(type='DCNv2', deformable_groups=1, fallback_on_stride=False),
+        stage_with_dcn=(False, True, True, True)),
+    mask_head=dict(
+        feat_channels=256,
+        stacked_convs=3,
+        scale_ranges=((1, 64), (32, 128), (64, 256), (128, 512), (256, 2048)),
+        mask_feature_head=dict(out_channels=128),
+        dcn_cfg=dict(type='DCNv2'),
+        dcn_apply_to_all_conv=False))  # light solov2 head

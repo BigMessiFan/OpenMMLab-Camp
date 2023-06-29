@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:937b920a4a55d5d8cf787e9ae8c42de5dca9d5b105362639db032f5af5817155
-size 240
+_base_ = './cascade-rcnn_r50_fpn_8xb8-amp-lsj-200e_coco.py'
+
+model = dict(
+    backbone=dict(
+        depth=18,
+        init_cfg=dict(type='Pretrained', checkpoint='torchvision://resnet18')),
+    neck=dict(in_channels=[64, 128, 256, 512]))

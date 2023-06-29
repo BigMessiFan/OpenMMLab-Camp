@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:9e389f5c45dd05a69d3ceb46af6feacbe3666c6eb55e6b1d6594b2939d0a8c10
-size 366
+_base_ = './freeanchor_r50_fpn_1x_coco.py'
+model = dict(
+    backbone=dict(
+        type='ResNeXt',
+        depth=101,
+        groups=32,
+        base_width=4,
+        num_stages=4,
+        out_indices=(0, 1, 2, 3),
+        frozen_stages=1,
+        style='pytorch',
+        init_cfg=dict(
+            type='Pretrained', checkpoint='open-mmlab://resnext101_32x4d')))

@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:17b5c5d5733cb7e2e0481991777c65c42d95e9c4e98634cf8749cb22de0bdac0
-size 208
+_base_ = './atss_r50_fpn_8xb8-amp-lsj-200e_coco.py'
+
+model = dict(
+    backbone=dict(
+        depth=101,
+        init_cfg=dict(type='Pretrained',
+                      checkpoint='torchvision://resnet101')))

@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:561c5edadf13bd1a58b1f302a3278f3bbd692fc0fe60ce74194e10ff80f918d4
-size 295
+_base_ = ['./mask2former_swin-b-p4-w12-384_8xb2-lsj-50e_coco-panoptic.py']
+pretrained = 'https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_base_patch4_window12_384_22k.pth'  # noqa
+
+model = dict(
+    backbone=dict(init_cfg=dict(type='Pretrained', checkpoint=pretrained)))

@@ -1,3 +1,6 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:7ebc15c6c3c9f179335691cf4e57288fc19a6e79843187101e83710d3f2b1ef1
-size 201
+_base_ = './faster-rcnn_r50_fpn_1x_coco.py'
+model = dict(
+    roi_head=dict(
+        bbox_head=dict(
+            reg_decoded_bbox=True,
+            loss_bbox=dict(type='CIoULoss', loss_weight=12.0))))

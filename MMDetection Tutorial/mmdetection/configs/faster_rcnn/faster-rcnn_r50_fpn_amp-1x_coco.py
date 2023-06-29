@@ -1,3 +1,6 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:9af71d3aad11251fb1aae98e3c09a1e4d5fc33e09ec295dbc7e8c2e24e297f27
-size 225
+_base_ = './faster-rcnn_r50_fpn_1x_coco.py'
+
+# MMEngine support the following two ways, users can choose
+# according to convenience
+# optim_wrapper = dict(type='AmpOptimWrapper')
+_base_.optim_wrapper.type = 'AmpOptimWrapper'

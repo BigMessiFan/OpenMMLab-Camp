@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ba7b93d3e003034ad776d5b09416c41636fc6ff1f0f136e292fefb1465b8b534
-size 224
+_base_ = '../ssd/ssd512_coco.py'
+
+model = dict(
+    bbox_head=dict(type='PISASSDHead'),
+    train_cfg=dict(isr=dict(k=2., bias=0.), carl=dict(k=1., bias=0.2)))
+
+optim_wrapper = dict(clip_grad=dict(max_norm=35, norm_type=2))

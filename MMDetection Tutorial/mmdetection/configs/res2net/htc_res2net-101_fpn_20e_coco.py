@@ -1,3 +1,10 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:05e65137ff82501837a2bf76b8e6872bc488e3f9b3f8eb12f9b33be15f250c5c
-size 276
+_base_ = '../htc/htc_r50_fpn_20e_coco.py'
+model = dict(
+    backbone=dict(
+        type='Res2Net',
+        depth=101,
+        scales=4,
+        base_width=26,
+        init_cfg=dict(
+            type='Pretrained',
+            checkpoint='open-mmlab://res2net101_v1d_26w_4s')))

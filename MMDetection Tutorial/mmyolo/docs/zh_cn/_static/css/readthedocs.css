@@ -1,3 +1,6 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e06713d1b655010a6bebd66e75efda660759de50cab1b4f421c8ae736b319b38
-size 141
+.header-logo {
+    background-image: url("../image/mmyolo-logo.png");
+    background-size: 115px 40px;
+    height: 40px;
+    width: 115px;
+}

@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:57787cedf9b5bcb667da2501f65e1508d09e28c9d3f12bf275e9015986a18c96
-size 281
+_base_ = './fcos_r50_fpn_gn-head-center-normbbox-centeronreg-giou_8xb8-amp-lsj-200e_coco.py'  # noqa
+
+model = dict(
+    backbone=dict(
+        depth=18,
+        init_cfg=dict(type='Pretrained', checkpoint='torchvision://resnet18')),
+    neck=dict(in_channels=[64, 128, 256, 512]))

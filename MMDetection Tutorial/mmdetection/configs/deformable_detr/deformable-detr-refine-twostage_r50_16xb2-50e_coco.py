@@ -1,3 +1,2 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:842f71ed903afa82afa1ca58bbcde383c8f784f251f91d3c58abdcfdc579314c
-size 88
+_base_ = 'deformable-detr-refine_r50_16xb2-50e_coco.py'
+model = dict(as_two_stage=True)

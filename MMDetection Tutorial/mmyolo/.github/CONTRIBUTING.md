@@ -1,3 +1,1 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c06c802c22e70b703685fb28fbc5014b4278898d74bf0cafeef175729ddb9c7a
-size 208
+We appreciate all contributions to improve MMYOLO. Please refer to [CONTRIBUTING.md](https://github.com/open-mmlab/mmcv/blob/master/CONTRIBUTING.md) in MMCV for more details about the contributing guideline.

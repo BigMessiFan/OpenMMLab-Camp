@@ -1,3 +1,38 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:cf8221f8b17a67ad2f54f7e00ec7530ce2e48b0a682e32d7464d17e16d81cc95
-size 1222
+# Copyright (c) OpenMMLab. All rights reserved.
+from unittest import TestCase
+from unittest.mock import Mock
+
+from mmdet.engine.hooks import MemoryProfilerHook
+
+
+class TestMemoryProfilerHook(TestCase):
+
+    def test_after_train_iter(self):
+        hook = MemoryProfilerHook(2)
+        runner = Mock()
+        runner.logger = Mock()
+        runner.logger.info = Mock()
+        hook.after_train_iter(runner, 0)
+        runner.logger.info.assert_not_called()
+        hook.after_train_iter(runner, 1)
+        runner.logger.info.assert_called_once()
+
+    def test_after_val_iter(self):
+        hook = MemoryProfilerHook(2)
+        runner = Mock()
+        runner.logger = Mock()
+        runner.logger.info = Mock()
+        hook.after_val_iter(runner, 0)
+        runner.logger.info.assert_not_called()
+        hook.after_val_iter(runner, 1)
+        runner.logger.info.assert_called_once()
+
+    def test_after_test_iter(self):
+        hook = MemoryProfilerHook(2)
+        runner = Mock()
+        runner.logger = Mock()
+        runner.logger.info = Mock()
+        hook.after_test_iter(runner, 0)
+        runner.logger.info.assert_not_called()
+        hook.after_test_iter(runner, 1)
+        runner.logger.info.assert_called_once()

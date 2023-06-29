@@ -1,3 +1,12 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:4536d4e80f3373ea4f999fe5bf789f7d72a14b8f2e37e03c9d6d8f77a7b2a763
-size 417
+_base_ = '../faster_rcnn/faster-rcnn_r50_fpn_1x_coco.py'
+model = dict(
+    roi_head=dict(
+        bbox_roi_extractor=dict(
+            type='SingleRoIExtractor',
+            roi_layer=dict(
+                _delete_=True,
+                type='ModulatedDeformRoIPoolPack',
+                output_size=7,
+                output_channels=256),
+            out_channels=256,
+            featmap_strides=[4, 8, 16, 32])))

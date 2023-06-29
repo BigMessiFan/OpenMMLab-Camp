@@ -1,3 +1,9 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5a66c75de7bc1dbad432a925b9d98c6b2464adcf1f78eae0e906203ffb76932e
-size 272
+_base_ = [
+    './bytetrack_yolox_x_8xb4-80e_crowdhuman-mot17halftrain_'
+    'test-mot17halfval.py'
+]
+
+# fp16 settings
+optim_wrapper = dict(type='AmpOptimWrapper', loss_scale='dynamic')
+val_cfg = dict(type='ValLoop', fp16=True)
+test_cfg = dict(type='TestLoop', fp16=True)

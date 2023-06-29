@@ -1,3 +1,18 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5bedfa2682fd6de8d273215ef45ba53ed3c45f23be7c090c4877401cc724572f
-size 391
+_base_ = './point-rend_r50-caffe_fpn_ms-1x_coco.py'
+
+max_epochs = 36
+
+# learning policy
+param_scheduler = [
+    dict(
+        type='LinearLR', start_factor=0.001, by_epoch=False, begin=0, end=500),
+    dict(
+        type='MultiStepLR',
+        begin=0,
+        end=max_epochs,
+        by_epoch=True,
+        milestones=[28, 34],
+        gamma=0.1)
+]
+
+train_cfg = dict(max_epochs=max_epochs)

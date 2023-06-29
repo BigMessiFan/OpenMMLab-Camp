@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:24f0af56fc0bf2017ced3ac19c11e21e455e82866be3ba2b952c3d92c160fefd
-size 386
+_base_ = '../cascade_rcnn/cascade-mask-rcnn_x101-32x4d_fpn_1x_coco.py'
+model = dict(
+    backbone=dict(
+        norm_cfg=dict(type='SyncBN', requires_grad=True),
+        norm_eval=False,
+        plugins=[
+            dict(
+                cfg=dict(type='ContextBlock', ratio=1. / 4),
+                stages=(False, True, True, True),
+                position='after_conv3')
+        ]))

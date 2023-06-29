@@ -1,3 +1,15 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:271638bc42d5b982450dd2f3dd94ce682a9af54b4f86f1a8b5e8a7abf3c2c867
-size 359
+_base_ = './mask-rcnn_r50-caffe_fpn_ms-poly-1x_coco.py'
+
+train_cfg = dict(max_epochs=36)
+# learning rate
+param_scheduler = [
+    dict(
+        type='LinearLR', start_factor=0.001, by_epoch=False, begin=0, end=500),
+    dict(
+        type='MultiStepLR',
+        begin=0,
+        end=24,
+        by_epoch=True,
+        milestones=[28, 34],
+        gamma=0.1)
+]

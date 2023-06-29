@@ -1,3 +1,28 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:1075ceacc50790fe5d59e4722d767e838d64d67633da664489e9f9d8baa112b8
-size 729
+name: deploy
+
+on: push
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-n-publish:
+    runs-on: ubuntu-latest
+    if: startsWith(github.event.ref, 'refs/tags')
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+      - name: Install torch
+        run: pip install torch
+      - name: Install wheel
+        run: pip install wheel
+      - name: Build MMYOLO
+        run: python setup.py sdist bdist_wheel
+      - name: Publish distribution to PyPI
+        run: |
+          pip install twine
+          twine upload dist/* -u __token__ -p ${{ secrets.pypi_password }}

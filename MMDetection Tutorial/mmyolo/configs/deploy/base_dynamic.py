@@ -1,3 +1,17 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:57374c5024da73c1510c63961d6aa5a2fcb77e2522689252752363a42178171b
-size 337
+_base_ = ['./base_static.py']
+onnx_config = dict(
+    dynamic_axes={
+        'input': {
+            0: 'batch',
+            2: 'height',
+            3: 'width'
+        },
+        'dets': {
+            0: 'batch',
+            1: 'num_dets'
+        },
+        'labels': {
+            0: 'batch',
+            1: 'num_dets'
+        }
+    })

@@ -1,3 +1,10 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:9def212a7dd274776b0dd86727aec6226f704ad11285291744ccbcc2cefaa126
-size 258
+_base_ = [
+    '../common/ms-poly_3x_coco-instance.py',
+    '../_base_/models/mask-rcnn_r50_fpn.py'
+]
+
+model = dict(
+    backbone=dict(
+        depth=101,
+        init_cfg=dict(type='Pretrained',
+                      checkpoint='torchvision://resnet101')))

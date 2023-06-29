@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:d6cc4f898d65651c24d8451951fd8e26e90025b46380d29d6ea425221df2019e
-size 575
+_base_ = '../faster_rcnn/faster-rcnn_r50_fpn_1x_coco.py'
+model = dict(
+    backbone=dict(
+        plugins=[
+            dict(
+                cfg=dict(
+                    type='GeneralizedAttention',
+                    spatial_range=-1,
+                    num_heads=8,
+                    attention_type='0010',
+                    kv_stride=2),
+                stages=(False, False, True, True),
+                position='after_conv2')
+        ],
+        dcn=dict(type='DCN', deform_groups=1, fallback_on_stride=False),
+        stage_with_dcn=(False, True, True, True)))

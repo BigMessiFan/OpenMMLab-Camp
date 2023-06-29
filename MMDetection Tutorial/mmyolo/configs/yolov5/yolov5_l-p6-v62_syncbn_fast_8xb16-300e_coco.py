@@ -1,3 +1,15 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:3e733d8701703474c30d3c1e195760f7c494fd54e6d2e990f5eb7f5a906ec641
-size 372
+_base_ = './yolov5_m-p6-v62_syncbn_fast_8xb16-300e_coco.py'
+
+deepen_factor = 1.0
+widen_factor = 1.0
+
+model = dict(
+    backbone=dict(
+        deepen_factor=deepen_factor,
+        widen_factor=widen_factor,
+    ),
+    neck=dict(
+        deepen_factor=deepen_factor,
+        widen_factor=widen_factor,
+    ),
+    bbox_head=dict(head_module=dict(widen_factor=widen_factor)))

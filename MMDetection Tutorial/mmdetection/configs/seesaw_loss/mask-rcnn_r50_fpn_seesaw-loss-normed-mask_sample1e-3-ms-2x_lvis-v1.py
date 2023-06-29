@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:87d51fef43e8663b340e7f72aecf94de823a4f20bccbbb08878a4517e7812aae
-size 199
+_base_ = './mask-rcnn_r50_fpn_seesaw-loss_sample1e-3-ms-2x_lvis-v1.py'
+model = dict(
+    roi_head=dict(
+        mask_head=dict(
+            predictor_cfg=dict(type='NormedConv2d', tempearture=20))))

@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:8cc824e7f32bc417cf14286ea0c83a1d3240952c32e943690707a7eae9a89776
-size 379
+_base_ = './htc_hrnetv2p-w40_20e_coco.py'
+
+# learning policy
+max_epochs = 28
+train_cfg = dict(max_epochs=max_epochs)
+param_scheduler = [
+    dict(
+        type='LinearLR', start_factor=0.001, by_epoch=False, begin=0, end=500),
+    dict(
+        type='MultiStepLR',
+        begin=0,
+        end=max_epochs,
+        by_epoch=True,
+        milestones=[24, 27],
+        gamma=0.1)
+]

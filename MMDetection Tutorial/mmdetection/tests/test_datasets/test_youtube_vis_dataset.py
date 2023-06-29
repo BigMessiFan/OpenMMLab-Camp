@@ -1,3 +1,17 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:19405612b2ab7018777a11c6495771ba9f1c7239796869f930b8a68982abf697
-size 480
+# Copyright (c) OpenMMLab. All rights reserved.
+from unittest import TestCase
+
+from mmdet.datasets import YouTubeVISDataset
+
+
+class TestYouTubeVISDataset(TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+
+        cls.dataset = YouTubeVISDataset(
+            ann_file='tests/data/vis_sample.json', dataset_version='2019')
+
+    def test_set_dataset_classes(self):
+        assert isinstance(self.dataset.metainfo, dict)
+        assert len(self.dataset.metainfo['classes']) == 40

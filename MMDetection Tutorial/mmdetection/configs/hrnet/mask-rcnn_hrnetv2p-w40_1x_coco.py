@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:0912c14274d404160e1a8b16aeb5931a739f68c5d86950f5e64407907c5ea1f2
-size 461
+_base_ = './mask-rcnn_hrnetv2p-w18-1x_coco.py'
+model = dict(
+    backbone=dict(
+        type='HRNet',
+        extra=dict(
+            stage2=dict(num_channels=(40, 80)),
+            stage3=dict(num_channels=(40, 80, 160)),
+            stage4=dict(num_channels=(40, 80, 160, 320))),
+        init_cfg=dict(
+            type='Pretrained', checkpoint='open-mmlab://msra/hrnetv2_w40')),
+    neck=dict(type='HRFPN', in_channels=[40, 80, 160, 320], out_channels=256))

@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c7d4ee88b6102dc2ff1504ea0b6233de384ef1f1258f66f614ff9c22ebec83c9
-size 150
+_base_ = './cspnext-s_8xb256-rsb-a1-600e_in1k.py'
+
+model = dict(
+    backbone=dict(deepen_factor=1, widen_factor=1),
+    head=dict(in_channels=1024))

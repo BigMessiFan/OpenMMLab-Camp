@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:30697d8ad95a28591728200fcbcbbc7027fd0607d01ca874f4a483790962526a
-size 338
+_base_ = './reppoints-moment_r50_fpn-gn_head-gn_2x_coco.py'
+model = dict(
+    backbone=dict(
+        depth=101,
+        dcn=dict(type='DCN', deform_groups=1, fallback_on_stride=False),
+        stage_with_dcn=(False, True, True, True),
+        init_cfg=dict(type='Pretrained',
+                      checkpoint='torchvision://resnet101')))

@@ -1,3 +1,15 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:0d7d8f9621b09ae29a5fce2d4342fc5e39747fd5757e95b5b8e85e46d7d307fb
-size 485
+# Copyright (c) OpenMMLab. All rights reserved.
+from mmdet.datasets import CrowdHumanDataset
+
+from ..registry import DATASETS
+from .yolov5_coco import BatchShapePolicyDataset
+
+
+@DATASETS.register_module()
+class YOLOv5CrowdHumanDataset(BatchShapePolicyDataset, CrowdHumanDataset):
+    """Dataset for YOLOv5 CrowdHuman Dataset.
+
+    We only add `BatchShapePolicy` function compared with CrowdHumanDataset.
+    See `mmyolo/datasets/utils.py#BatchShapePolicy` for details
+    """
+    pass

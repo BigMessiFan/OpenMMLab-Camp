@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:4c4ec430d546eb5a2e61c9846000a93764b6cc213feb4c1722178c0e76309348
-size 230
+_base_ = './sparse-rcnn_r50_fpn_300-proposals_crop-ms-480-800-3x_coco.py'
+
+model = dict(
+    backbone=dict(
+        depth=101,
+        init_cfg=dict(type='Pretrained',
+                      checkpoint='torchvision://resnet101')))

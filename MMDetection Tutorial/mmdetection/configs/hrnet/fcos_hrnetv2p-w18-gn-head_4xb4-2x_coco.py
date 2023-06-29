@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:6e0b51956d55b963b7e720be95eee6dc3b5f3da05f5bbbdac6efc541c13f1529
-size 392
+_base_ = './fcos_hrnetv2p-w18-gn-head_4xb4-1x_coco.py'
+
+# learning policy
+max_epochs = 24
+train_cfg = dict(max_epochs=max_epochs)
+param_scheduler = [
+    dict(
+        type='LinearLR', start_factor=0.001, by_epoch=False, begin=0, end=500),
+    dict(
+        type='MultiStepLR',
+        begin=0,
+        end=max_epochs,
+        by_epoch=True,
+        milestones=[16, 22],
+        gamma=0.1)
+]

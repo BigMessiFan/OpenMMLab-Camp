@@ -1,3 +1,3 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:6f370e450117bd2dabdb72c002ed02d54e632afe0541a0a4afcdadd4062241fd
-size 100
+_base_ = './centernet_r18-dcnv2_8xb16-crop512-140e_coco.py'
+
+model = dict(neck=dict(use_dcn=False))

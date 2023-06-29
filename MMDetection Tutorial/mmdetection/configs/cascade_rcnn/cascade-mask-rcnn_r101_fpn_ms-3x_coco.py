@@ -1,3 +1,6 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:402a8eaccb4b844841a1daf892bd600894b818e44bab88c8dcb146d5e3dbfffa
-size 208
+_base_ = './cascade-mask-rcnn_r50_fpn_ms-3x_coco.py'
+model = dict(
+    backbone=dict(
+        depth=101,
+        init_cfg=dict(type='Pretrained',
+                      checkpoint='torchvision://resnet101')))

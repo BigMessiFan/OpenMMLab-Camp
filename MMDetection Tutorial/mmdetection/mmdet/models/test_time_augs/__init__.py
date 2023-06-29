@@ -1,3 +1,10 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ef031e29ec0d5c812386fb7d3ced14a418c32ed584b21ebc1debc5152325324a
-size 389
+# Copyright (c) OpenMMLab. All rights reserved.
+from .det_tta import DetTTAModel
+from .merge_augs import (merge_aug_bboxes, merge_aug_masks,
+                         merge_aug_proposals, merge_aug_results,
+                         merge_aug_scores)
+
+__all__ = [
+    'merge_aug_bboxes', 'merge_aug_masks', 'merge_aug_proposals',
+    'merge_aug_scores', 'merge_aug_results', 'DetTTAModel'
+]

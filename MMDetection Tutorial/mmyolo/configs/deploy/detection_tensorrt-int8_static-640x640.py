@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:3fde2aa32eee493a8e46a02b8ee123ff49acdf64c52ed4d077e34263f728bbdf
-size 627
+_base_ = ['./base_static.py']
+onnx_config = dict(input_shape=(640, 640))
+backend_config = dict(
+    type='tensorrt',
+    common_config=dict(
+        fp16_mode=True, max_workspace_size=1 << 30, int8_mode=True),
+    model_inputs=[
+        dict(
+            input_shapes=dict(
+                input=dict(
+                    min_shape=[1, 3, 640, 640],
+                    opt_shape=[1, 3, 640, 640],
+                    max_shape=[1, 3, 640, 640])))
+    ])
+calib_config = dict(create_calib=True, calib_file='calib_data.h5')
+use_efficientnms = False  # whether to replace TRTBatchedNMS plugin with EfficientNMS plugin # noqa E501

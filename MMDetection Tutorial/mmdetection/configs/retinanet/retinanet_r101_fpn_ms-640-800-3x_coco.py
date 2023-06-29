@@ -1,3 +1,9 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ee35b59a0d695481a7789c1c560b67cfc9a0320485f0d0c6048516d9a9d916b0
-size 343
+_base_ = ['../_base_/models/retinanet_r50_fpn.py', '../common/ms_3x_coco.py']
+# optimizer
+model = dict(
+    backbone=dict(
+        depth=101,
+        init_cfg=dict(type='Pretrained',
+                      checkpoint='torchvision://resnet101')))
+optim_wrapper = dict(
+    optimizer=dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001))

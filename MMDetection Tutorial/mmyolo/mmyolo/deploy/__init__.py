@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5868b7cac82a1dc1af00847552b3d0348201d582105960020a9b90da337423dc
-size 253
+# Copyright (c) OpenMMLab. All rights reserved.
+from mmdeploy.codebase.base import MMCodebase
+
+from .models import *  # noqa: F401,F403
+from .object_detection import MMYOLO, YOLOObjectDetection
+
+__all__ = ['MMCodebase', 'MMYOLO', 'YOLOObjectDetection']

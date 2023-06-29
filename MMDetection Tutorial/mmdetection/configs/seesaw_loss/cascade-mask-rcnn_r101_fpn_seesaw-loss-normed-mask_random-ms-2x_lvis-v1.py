@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2ece240036655d100f741ce7481f87511466f94caf22f2a9c14c993b87d8ac23
-size 218
+_base_ = './cascade-mask-rcnn_r101_fpn_seesaw-loss_random-ms-2x_lvis-v1.py'  # noqa: E501
+model = dict(
+    roi_head=dict(
+        mask_head=dict(
+            predictor_cfg=dict(type='NormedConv2d', tempearture=20))))

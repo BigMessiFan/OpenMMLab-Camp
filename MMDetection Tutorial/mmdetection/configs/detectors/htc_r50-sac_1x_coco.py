@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a2107312251a4039d96cf15bbd4e4cf785b72c802f52d76f745b0a273107ea1e
-size 245
+_base_ = '../htc/htc_r50_fpn_1x_coco.py'
+
+model = dict(
+    backbone=dict(
+        type='DetectoRS_ResNet',
+        conv_cfg=dict(type='ConvAWS'),
+        sac=dict(type='SAC', use_deform=True),
+        stage_with_sac=(False, True, True, True)))

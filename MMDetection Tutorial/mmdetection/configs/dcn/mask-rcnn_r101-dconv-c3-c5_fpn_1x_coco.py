@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a8b59281117073b9a86372c3d250037123f18f2e73c210424d6f65f33afad82b
-size 211
+_base_ = '../mask_rcnn/mask-rcnn_r101_fpn_1x_coco.py'
+model = dict(
+    backbone=dict(
+        dcn=dict(type='DCN', deform_groups=1, fallback_on_stride=False),
+        stage_with_dcn=(False, True, True, True)))

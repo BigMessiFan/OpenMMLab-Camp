@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:964fe9bf33e30632f793ba7be887897ac230aa8d33e6df614d402490b5b7ec62
-size 237
+_base_ = './retinanet_r50_fpn_8xb8-amp-lsj-200e_coco.py'
+
+model = dict(
+    backbone=dict(
+        depth=18,
+        init_cfg=dict(type='Pretrained', checkpoint='torchvision://resnet18')),
+    neck=dict(in_channels=[64, 128, 256, 512]))

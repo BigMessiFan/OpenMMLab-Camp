@@ -1,3 +1,15 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ccaae2196dd1efb22b2253597e02d008f5d3c853eba43424701671158eb04b09
-size 430
+_base_ = [
+    './deepsort_faster-rcnn_r50_fpn_8xb2-4e_mot17halftrain'
+    '_test-mot17halfval.py'
+]
+
+# dataloader
+val_dataloader = dict(
+    dataset=dict(ann_file='annotations/train_cocoformat.json'))
+test_dataloader = dict(
+    dataset=dict(
+        ann_file='annotations/test_cocoformat.json',
+        data_prefix=dict(img_path='test')))
+
+# evaluator
+test_evaluator = dict(format_only=True, outfile_prefix='./mot_17_test_res')

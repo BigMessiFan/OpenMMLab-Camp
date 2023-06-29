@@ -1,3 +1,17 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:215b639baa927fa709d8fa9fec75acf06ffefaca3aab0e760dc9a1259fde91fc
-size 433
+_base_ = './ms-rcnn_r101-caffe_fpn_1x_coco.py'
+# learning policy
+max_epochs = 24
+train_cfg = dict(
+    type='EpochBasedTrainLoop', max_epochs=max_epochs, val_interval=1)
+
+param_scheduler = [
+    dict(
+        type='LinearLR', start_factor=0.001, by_epoch=False, begin=0, end=500),
+    dict(
+        type='MultiStepLR',
+        begin=0,
+        end=max_epochs,
+        by_epoch=True,
+        milestones=[16, 22],
+        gamma=0.1)
+]

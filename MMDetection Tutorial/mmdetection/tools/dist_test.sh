@@ -1,3 +1,22 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:bb00db6ed07c128c244ee9b0c8883b04d9cb4408e0b8b90580ad5b49b714a3e5
-size 479
+#!/usr/bin/env bash
+
+CONFIG=$1
+CHECKPOINT=$2
+GPUS=$3
+NNODES=${NNODES:-1}
+NODE_RANK=${NODE_RANK:-0}
+PORT=${PORT:-29500}
+MASTER_ADDR=${MASTER_ADDR:-"127.0.0.1"}
+
+PYTHONPATH="$(dirname $0)/..":$PYTHONPATH \
+python -m torch.distributed.launch \
+    --nnodes=$NNODES \
+    --node_rank=$NODE_RANK \
+    --master_addr=$MASTER_ADDR \
+    --nproc_per_node=$GPUS \
+    --master_port=$PORT \
+    $(dirname "$0")/test.py \
+    $CONFIG \
+    $CHECKPOINT \
+    --launcher pytorch \
+    ${@:4}

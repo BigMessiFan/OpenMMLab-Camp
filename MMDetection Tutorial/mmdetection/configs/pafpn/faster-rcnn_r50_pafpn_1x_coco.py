@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c3ccc44e76c54da2afbd206c2d1bcd61a662f727de5cf5f5fefecd2c35edc7d4
-size 200
+_base_ = '../faster_rcnn/faster-rcnn_r50_fpn_1x_coco.py'
+
+model = dict(
+    neck=dict(
+        type='PAFPN',
+        in_channels=[256, 512, 1024, 2048],
+        out_channels=256,
+        num_outs=5))

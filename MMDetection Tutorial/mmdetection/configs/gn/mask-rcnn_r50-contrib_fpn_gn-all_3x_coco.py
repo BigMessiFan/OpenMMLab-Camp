@@ -1,3 +1,18 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2ec75104c3124105b58af7d06604fcbcaf1bf96972b2f1640327a802ed5b7a2a
-size 411
+_base_ = './mask-rcnn_r50-contrib_fpn_gn-all_2x_coco.py'
+
+# learning policy
+max_epochs = 36
+train_cfg = dict(max_epochs=max_epochs)
+
+# learning rate
+param_scheduler = [
+    dict(
+        type='LinearLR', start_factor=0.001, by_epoch=False, begin=0, end=500),
+    dict(
+        type='MultiStepLR',
+        begin=0,
+        end=max_epochs,
+        by_epoch=True,
+        milestones=[28, 34],
+        gamma=0.1)
+]

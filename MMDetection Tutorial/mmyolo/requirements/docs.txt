@@ -1,3 +1,12 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ffccd1f066befbb95116f3057fd5c3069043add205edc537a6addc9cfeae5892
-size 267
+docutils==0.16.0
+mmcv>=2.0.0rc4,<2.1.0
+mmdet>=3.0.0rc6
+mmengine>=0.6.0
+myst-parser
+-e git+https://github.com/open-mmlab/pytorch_sphinx_theme.git#egg=pytorch_sphinx_theme
+sphinx==4.0.2
+sphinx-copybutton
+sphinx_markdown_tables
+sphinx_rtd_theme==0.5.2
+torch
+torchvision

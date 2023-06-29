@@ -1,3 +1,4 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:341a7f5503b80a8d21d0d019e3f0846183e0847d3a513e26d3cc370029e71d21
-size 202
+_base_ = 'mask-rcnn_r50-caffe_fpn_rpn-2conv_4conv1fc_syncbn-all_lsj-100e_coco.py'  # noqa
+
+# Enable automatic-mixed-precision training with AmpOptimWrapper.
+optim_wrapper = dict(type='AmpOptimWrapper')

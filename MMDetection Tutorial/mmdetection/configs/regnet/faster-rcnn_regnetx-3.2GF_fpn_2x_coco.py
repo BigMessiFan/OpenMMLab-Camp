@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2065fb1567e4aa2fcc47e7c1ea3851eeec077f70949ee6139e08f44b690e81b1
-size 391
+_base_ = './faster-rcnn_regnetx-3.2GF_fpn_1x_coco.py'
+
+# learning policy
+max_epochs = 24
+train_cfg = dict(max_epochs=max_epochs)
+param_scheduler = [
+    dict(
+        type='LinearLR', start_factor=0.001, by_epoch=False, begin=0, end=500),
+    dict(
+        type='MultiStepLR',
+        begin=0,
+        end=max_epochs,
+        by_epoch=True,
+        milestones=[16, 22],
+        gamma=0.1)
+]

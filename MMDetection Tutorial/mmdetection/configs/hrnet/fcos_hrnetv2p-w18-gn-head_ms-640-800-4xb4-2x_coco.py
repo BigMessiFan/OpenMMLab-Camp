@@ -1,3 +1,10 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:8620dc710b6ae2807a3bc35cc907369a9f4357426859f17d5b2ac27a05da0fec
-size 455
+_base_ = './fcos_hrnetv2p-w32-gn-head_ms-640-800-4xb4-2x_coco.py'
+model = dict(
+    backbone=dict(
+        extra=dict(
+            stage2=dict(num_channels=(18, 36)),
+            stage3=dict(num_channels=(18, 36, 72)),
+            stage4=dict(num_channels=(18, 36, 72, 144))),
+        init_cfg=dict(
+            type='Pretrained', checkpoint='open-mmlab://msra/hrnetv2_w18')),
+    neck=dict(type='HRFPN', in_channels=[18, 36, 72, 144], out_channels=256))

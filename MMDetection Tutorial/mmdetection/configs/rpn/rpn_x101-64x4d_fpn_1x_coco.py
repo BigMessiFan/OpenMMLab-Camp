@@ -1,3 +1,14 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:be6c5d85d0d6f3ebf63e40ed994572127d4bfb62a0873b6c58f2de4575c7f0e5
-size 413
+_base_ = './rpn_r50_fpn_1x_coco.py'
+model = dict(
+    backbone=dict(
+        type='ResNeXt',
+        depth=101,
+        groups=64,
+        base_width=4,
+        num_stages=4,
+        out_indices=(0, 1, 2, 3),
+        frozen_stages=1,
+        norm_cfg=dict(type='BN', requires_grad=True),
+        style='pytorch',
+        init_cfg=dict(
+            type='Pretrained', checkpoint='open-mmlab://resnext101_64x4d')))

@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:65a12ad21efa976dc9f287e6ecc9eb97c500149c051df8289a4d853bc94f7229
-size 288
+_base_ = ['./reid_r50_8xb32-6e_mot17train80_test-mot17val20.py']
+model = dict(head=dict(num_classes=368))
+# data
+data_root = 'data/MOT15/'
+train_dataloader = dict(dataset=dict(data_root=data_root))
+val_dataloader = dict(dataset=dict(data_root=data_root))
+test_dataloader = val_dataloader

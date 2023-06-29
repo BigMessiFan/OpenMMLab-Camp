@@ -1,3 +1,6 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2fc012f9174af1eecbea568874fb4cb7ce7c9dd4186a3a7ca146d4d623f296dd
-size 252
+_base_ = './mask-rcnn_r50_fpn_seesaw-loss-normed-mask_sample1e-3-ms-2x_lvis-v1.py'  # noqa: E501
+model = dict(
+    backbone=dict(
+        depth=101,
+        init_cfg=dict(type='Pretrained',
+                      checkpoint='torchvision://resnet101')))

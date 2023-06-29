@@ -1,3 +1,3 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:3f0a18a8f94f72417e434e9eb55393f5f7c5560aa3c8bdbf1737d28cda0dea7a
-size 170
+# Copyright (c) OpenMMLab. All rights reserved.
+from .panoptic_fpn_head import PanopticFPNHead  # noqa: F401,F403
+from .panoptic_fusion_heads import *  # noqa: F401,F403

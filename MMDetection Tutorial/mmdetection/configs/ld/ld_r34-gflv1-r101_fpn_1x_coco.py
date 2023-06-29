@@ -1,3 +1,19 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:496da102928041be38d61a19c01b2c8abf64cf3f8857e61dedb9be9aa532cf41
-size 569
+_base_ = ['./ld_r18-gflv1-r101_fpn_1x_coco.py']
+model = dict(
+    backbone=dict(
+        type='ResNet',
+        depth=34,
+        num_stages=4,
+        out_indices=(0, 1, 2, 3),
+        frozen_stages=1,
+        norm_cfg=dict(type='BN', requires_grad=True),
+        norm_eval=True,
+        style='pytorch',
+        init_cfg=dict(type='Pretrained', checkpoint='torchvision://resnet34')),
+    neck=dict(
+        type='FPN',
+        in_channels=[64, 128, 256, 512],
+        out_channels=256,
+        start_level=1,
+        add_extra_convs='on_output',
+        num_outs=5))

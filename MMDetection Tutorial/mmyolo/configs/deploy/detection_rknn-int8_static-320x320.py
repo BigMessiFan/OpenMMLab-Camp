@@ -1,3 +1,9 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:6d2eb258d9d94c28997005e243cb0d8bb314ed52d4e156fc39aa143a0bc7e786
-size 377
+_base_ = ['./base_static.py']
+onnx_config = dict(
+    input_shape=[320, 320], output_names=['feat0', 'feat1', 'feat2'])
+codebase_config = dict(model_type='rknn')
+backend_config = dict(
+    type='rknn',
+    common_config=dict(target_platform='rv1126', optimization_level=1),
+    quantization_config=dict(do_quantization=True, dataset=None),
+    input_size_list=[[3, 320, 320]])

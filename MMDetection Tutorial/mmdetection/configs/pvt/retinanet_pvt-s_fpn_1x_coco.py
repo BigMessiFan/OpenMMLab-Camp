@@ -1,3 +1,6 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:6f7af91fee361b32c1828b0e676fee13b0cb565db1eb7e6f9a4bd0db34b10078
-size 237
+_base_ = 'retinanet_pvt-t_fpn_1x_coco.py'
+model = dict(
+    backbone=dict(
+        num_layers=[3, 4, 6, 3],
+        init_cfg=dict(checkpoint='https://github.com/whai362/PVT/'
+                      'releases/download/v2/pvt_small.pth')))

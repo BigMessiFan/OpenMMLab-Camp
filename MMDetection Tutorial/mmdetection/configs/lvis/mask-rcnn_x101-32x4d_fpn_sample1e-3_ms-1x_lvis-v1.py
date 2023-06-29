@@ -1,3 +1,14 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:afe3724e1957f8f58bfe412122cfc4baaffc532054094ae4746ff94bdf05ff41
-size 436
+_base_ = './mask-rcnn_r50_fpn_sample1e-3_ms-1x_lvis-v1.py'
+model = dict(
+    backbone=dict(
+        type='ResNeXt',
+        depth=101,
+        groups=32,
+        base_width=4,
+        num_stages=4,
+        out_indices=(0, 1, 2, 3),
+        frozen_stages=1,
+        norm_cfg=dict(type='BN', requires_grad=True),
+        style='pytorch',
+        init_cfg=dict(
+            type='Pretrained', checkpoint='open-mmlab://resnext101_32x4d')))

@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:1e44c00af21ff79c324bc8627a25090a09fb1e9b249c4adb211c6c338261d767
-size 456
+_base_ = './htc_hrnetv2p-w32_20e_coco.py'
+model = dict(
+    backbone=dict(
+        type='HRNet',
+        extra=dict(
+            stage2=dict(num_channels=(40, 80)),
+            stage3=dict(num_channels=(40, 80, 160)),
+            stage4=dict(num_channels=(40, 80, 160, 320))),
+        init_cfg=dict(
+            type='Pretrained', checkpoint='open-mmlab://msra/hrnetv2_w40')),
+    neck=dict(type='HRFPN', in_channels=[40, 80, 160, 320], out_channels=256))

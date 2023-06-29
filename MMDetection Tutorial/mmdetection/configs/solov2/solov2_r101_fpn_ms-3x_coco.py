@@ -1,3 +1,6 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2b693d7241c30186c667c00cea2038ddd953aebd0cd75e73ba3e6bd418631edd
-size 166
+_base_ = './solov2_r50_fpn_ms-3x_coco.py'
+
+# model settings
+model = dict(
+    backbone=dict(
+        depth=101, init_cfg=dict(checkpoint='torchvision://resnet101')))

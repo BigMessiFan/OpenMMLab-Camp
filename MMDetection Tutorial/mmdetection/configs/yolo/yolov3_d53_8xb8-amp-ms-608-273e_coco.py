@@ -1,3 +1,3 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:97ebd6760dce8029b8fe37210f4080fd9d75f585622fbbc5f8f28bc62b252d4c
-size 132
+_base_ = './yolov3_d53_8xb8-ms-608-273e_coco.py'
+# fp16 settings
+optim_wrapper = dict(type='AmpOptimWrapper', loss_scale='dynamic')

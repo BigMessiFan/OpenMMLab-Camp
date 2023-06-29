@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:8d099fd9b91590439bfe9ea99bb7b20fae28d6e9cd6c3ecec3894f482f6ce1eb
-size 272
+_base_ = '../retinanet/retinanet_x101-32x4d_fpn_1x_coco.py'
+
+model = dict(
+    bbox_head=dict(
+        type='PISARetinaHead',
+        loss_bbox=dict(type='SmoothL1Loss', beta=0.11, loss_weight=1.0)),
+    train_cfg=dict(isr=dict(k=2., bias=0.), carl=dict(k=1., bias=0.2)))

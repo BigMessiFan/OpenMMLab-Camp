@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ce7ad15be37b883bc247f2c3f8357f1a4b6ad95867d1dfb8019841ca2cb5cc06
-size 62
+matplotlib
+numpy
+pycocotools
+scipy
+shapely
+six
+terminaltables

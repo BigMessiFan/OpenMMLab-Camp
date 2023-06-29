@@ -1,3 +1,19 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:1e8997e4baa28c393a67f30ce979668b8806cf046e089cccd6c0e09f54d6a142
-size 552
+# Copyright (c) OpenMMLab. All rights reserved.
+from unittest import TestCase
+
+import torch
+
+from mmdet.models import TripletLoss
+
+
+class TestTripletLoss(TestCase):
+
+    def test_triplet_loss(self):
+        feature = torch.Tensor([[1, 1], [1, 1], [0, 0], [0, 0]])
+        label = torch.Tensor([1, 1, 0, 0])
+
+        loss = TripletLoss(margin=0.3, loss_weight=1.0)
+        assert torch.allclose(loss(feature, label), torch.tensor(0.))
+
+        label = torch.Tensor([1, 0, 1, 0])
+        assert torch.allclose(loss(feature, label), torch.tensor(1.7142))

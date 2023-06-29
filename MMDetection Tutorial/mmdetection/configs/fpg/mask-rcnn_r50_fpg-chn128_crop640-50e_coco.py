@@ -1,3 +1,10 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:4ca92ae9f203a14b9f755a91c4be62fc938b1bcbf6a44f3e782fa3263d50516c
-size 357
+_base_ = 'mask-rcnn_r50_fpg_crop640-50e_coco.py'
+
+model = dict(
+    neck=dict(out_channels=128, inter_channels=128),
+    rpn_head=dict(in_channels=128),
+    roi_head=dict(
+        bbox_roi_extractor=dict(out_channels=128),
+        bbox_head=dict(in_channels=128),
+        mask_roi_extractor=dict(out_channels=128),
+        mask_head=dict(in_channels=128)))

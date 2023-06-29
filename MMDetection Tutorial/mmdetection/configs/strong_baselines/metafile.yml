@@ -1,3 +1,24 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:992b997c4636494f436740b12773d2c980d941aec930670a39a2c220255926ef
-size 668
+Models:
+  - Name: mask-rcnn_r50-caffe_fpn_rpn-2conv_4conv1fc_syncbn-all_lsj-100e_coco
+    In Collection: Mask R-CNN
+    Config: configs/strong_baselines/mask-rcnn_r50-caffe_fpn_rpn-2conv_4conv1fc_syncbn-all_lsj-100e_coco.py
+    Metadata:
+      Epochs: 100
+      Training Data: COCO
+      Training Techniques:
+        - SGD with Momentum
+        - Weight Decay
+        - LSJ
+      Training Resources: 8x V100 GPUs
+      Architecture:
+        - ResNet
+        - FPN
+    Results:
+      - Task: Object Detection
+        Dataset: COCO
+        Metrics:
+          box AP: 44.7
+      - Task: Instance Segmentation
+        Dataset: COCO
+        Metrics:
+          box AP: 40.4

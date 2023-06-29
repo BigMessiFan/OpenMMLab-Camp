@@ -1,3 +1,27 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:7bd70eb39eaff543b5ceca26ab7deed5b31a9b548ae056c98db1c2bb4854597c
-size 742
+# Copyright (c) OpenMMLab. All rights reserved.
+from unittest import TestCase
+
+import torch
+
+from mmdet.models import GlobalAveragePooling
+
+
+class TestGlobalAveragePooling(TestCase):
+
+    def test_forward(self):
+        inputs = torch.rand(32, 128, 14, 14)
+
+        # test AdaptiveAvgPool2d
+        neck = GlobalAveragePooling()
+        outputs = neck(inputs)
+        assert outputs.shape == (32, 128)
+
+        # test kernel_size
+        neck = GlobalAveragePooling(kernel_size=7)
+        outputs = neck(inputs)
+        assert outputs.shape == (32, 128 * 2 * 2)
+
+        # test kenel_size and stride
+        neck = GlobalAveragePooling(kernel_size=7, stride=2)
+        outputs = neck(inputs)
+        assert outputs.shape == (32, 128 * 4 * 4)

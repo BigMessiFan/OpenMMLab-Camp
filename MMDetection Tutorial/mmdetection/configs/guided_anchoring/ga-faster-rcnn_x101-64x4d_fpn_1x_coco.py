@@ -1,3 +1,14 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:19594a04e367ee603fc42342d327f6b33deafcfdf28906b2a7e815d81f61929c
-size 424
+_base_ = './ga-faster-rcnn_r50_fpn_1x_coco.py'
+model = dict(
+    backbone=dict(
+        type='ResNeXt',
+        depth=101,
+        groups=64,
+        base_width=4,
+        num_stages=4,
+        out_indices=(0, 1, 2, 3),
+        frozen_stages=1,
+        norm_cfg=dict(type='BN', requires_grad=True),
+        style='pytorch',
+        init_cfg=dict(
+            type='Pretrained', checkpoint='open-mmlab://resnext101_64x4d')))

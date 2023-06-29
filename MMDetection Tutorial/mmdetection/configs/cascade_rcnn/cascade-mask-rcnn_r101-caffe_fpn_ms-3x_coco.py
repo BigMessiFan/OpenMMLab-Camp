@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:56d5102e0ee5ca6ea7ee257c33c21ad3b48c6678526aec1666c3e66a466fc5ee
-size 233
+_base_ = './cascade-mask-rcnn_r50-caffe_fpn_ms-3x_coco.py'
+model = dict(
+    backbone=dict(
+        depth=101,
+        init_cfg=dict(
+            type='Pretrained',
+            checkpoint='open-mmlab://detectron2/resnet101_caffe')))

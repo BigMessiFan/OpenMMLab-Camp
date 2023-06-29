@@ -1,3 +1,33 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:54f48a1a0d49aa968bd998b57992a93e9508eb0a94bd30d8d69162c1672de6fb
-size 975
+Collections:
+  - Name: DETR
+    Metadata:
+      Training Data: COCO
+      Training Techniques:
+        - AdamW
+        - Multi Scale Train
+        - Gradient Clip
+      Training Resources: 8x V100 GPUs
+      Architecture:
+        - ResNet
+        - Transformer
+    Paper:
+      URL: https://arxiv.org/abs/2005.12872
+      Title: 'End-to-End Object Detection with Transformers'
+    README: configs/detr/README.md
+    Code:
+      URL: https://github.com/open-mmlab/mmdetection/blob/v2.7.0/mmdet/models/detectors/detr.py#L7
+      Version: v2.7.0
+
+Models:
+  - Name: detr_r50_8xb2-150e_coco
+    In Collection: DETR
+    Config: configs/detr/detr_r50_8xb2-150e_coco.py
+    Metadata:
+      Training Memory (GB): 7.9
+      Epochs: 150
+    Results:
+      - Task: Object Detection
+        Dataset: COCO
+        Metrics:
+          box AP: 39.9
+    Weights: https://download.openmmlab.com/mmdetection/v3.0/detr/detr_r50_8xb2-150e_coco/detr_r50_8xb2-150e_coco_20221023_153551-436d03e8.pth

@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e71cb97b42715e595cb4750dbcae56082def7f2329fc868650de7829dd0bcb5d
-size 257
+_base_ = '../mask_rcnn/mask-rcnn_r101_fpn_1x_coco.py'
+model = dict(
+    backbone=dict(plugins=[
+        dict(
+            cfg=dict(type='ContextBlock', ratio=1. / 4),
+            stages=(False, True, True, True),
+            position='after_conv3')
+    ]))

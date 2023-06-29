@@ -1,3 +1,9 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:9fafa098ae4a3ebb8faf3887add8db260abd409875bf6f7acf9a3328965a364e
-size 329
+blank_issues_enabled: false
+
+contact_links:
+  - name: Common Issues
+    url: https://mmdetection.readthedocs.io/en/latest/faq.html
+    about: Check if your issue already has solutions
+  - name: MMDetection Documentation
+    url: https://mmdetection.readthedocs.io/en/latest/
+    about: Check if your question is answered in docs

@@ -1,3 +1,17 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:790289491e1e4116c41201afa2a3c8e4ddf666e8f62f961f463659d8d8b32be8
-size 389
+_base_ = './retinanet_r50-caffe_fpn_ms-1x_coco.py'
+
+# training schedule for 2x
+train_cfg = dict(max_epochs=36)
+
+# learning rate policy
+param_scheduler = [
+    dict(
+        type='LinearLR', start_factor=0.001, by_epoch=False, begin=0, end=500),
+    dict(
+        type='MultiStepLR',
+        begin=0,
+        end=36,
+        by_epoch=True,
+        milestones=[28, 34],
+        gamma=0.1)
+]

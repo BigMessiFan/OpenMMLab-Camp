@@ -1,3 +1,6 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c04a67ac0fbb48df14ada534f16186e1e4eb6cd5bb5ad0c32b1c64835f4e39e4
-size 250
+_base_ = './rtmdet_l_8xb32-300e_coco.py'
+
+model = dict(
+    backbone=dict(deepen_factor=0.67, widen_factor=0.75),
+    neck=dict(in_channels=[192, 384, 768], out_channels=192, num_csp_blocks=2),
+    bbox_head=dict(in_channels=192, feat_channels=192))

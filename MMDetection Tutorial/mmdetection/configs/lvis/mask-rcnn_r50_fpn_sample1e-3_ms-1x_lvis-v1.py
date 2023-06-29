@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a5b45df904b51f8ab64eee9e0432df1e78c9275723f4cf785eb577d2c22ebf7f
-size 422
+_base_ = [
+    '../_base_/models/mask-rcnn_r50_fpn.py',
+    '../_base_/datasets/lvis_v1_instance.py',
+    '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py'
+]
+model = dict(
+    roi_head=dict(
+        bbox_head=dict(num_classes=1203), mask_head=dict(num_classes=1203)),
+    test_cfg=dict(
+        rcnn=dict(
+            score_thr=0.0001,
+            # LVIS allows up to 300
+            max_per_img=300)))

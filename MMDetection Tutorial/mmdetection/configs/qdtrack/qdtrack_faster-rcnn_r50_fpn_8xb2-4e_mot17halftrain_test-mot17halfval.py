@@ -1,3 +1,14 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:0bd8834016a95f69c5c8ef16bf5d1a7d3ee8e60a9e6f958483355d325a5d3839
-size 376
+_base_ = [
+    './qdtrack_faster-rcnn_r50_fpn_4e_base.py',
+    '../_base_/datasets/mot_challenge.py',
+]
+
+# evaluator
+val_evaluator = [
+    dict(type='CocoVideoMetric', metric=['bbox'], classwise=True),
+    dict(type='MOTChallengeMetric', metric=['HOTA', 'CLEAR', 'Identity'])
+]
+
+test_evaluator = val_evaluator
+# The fluctuation of HOTA is about +-1.
+randomness = dict(seed=6)

@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:d8ce14ce666b2ded5ab24b12cf0880948badd4c5e1c5f6c50242449b464c6f7f
-size 386
+_base_ = './faster-rcnn_hrnetv2p-w40-1x_coco.py'
+
+# learning policy
+max_epochs = 24
+train_cfg = dict(max_epochs=max_epochs)
+param_scheduler = [
+    dict(
+        type='LinearLR', start_factor=0.001, by_epoch=False, begin=0, end=500),
+    dict(
+        type='MultiStepLR',
+        begin=0,
+        end=max_epochs,
+        by_epoch=True,
+        milestones=[16, 22],
+        gamma=0.1)
+]

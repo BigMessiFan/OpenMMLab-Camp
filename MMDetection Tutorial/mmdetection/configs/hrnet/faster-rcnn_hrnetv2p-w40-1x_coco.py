@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ddcdf2f39ef9555a10e8bc99ca80879e266174d68a485fe1016ea674ade051f7
-size 463
+_base_ = './faster-rcnn_hrnetv2p-w32-1x_coco.py'
+model = dict(
+    backbone=dict(
+        type='HRNet',
+        extra=dict(
+            stage2=dict(num_channels=(40, 80)),
+            stage3=dict(num_channels=(40, 80, 160)),
+            stage4=dict(num_channels=(40, 80, 160, 320))),
+        init_cfg=dict(
+            type='Pretrained', checkpoint='open-mmlab://msra/hrnetv2_w40')),
+    neck=dict(type='HRFPN', in_channels=[40, 80, 160, 320], out_channels=256))

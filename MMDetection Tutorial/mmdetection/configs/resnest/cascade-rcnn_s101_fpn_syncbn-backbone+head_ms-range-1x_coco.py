@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:fe681f18201f51cd301026b30e5fe88a1b95520981b1aa23a8094507ecbe60cb
-size 257
+_base_ = './cascade-rcnn_s50_fpn_syncbn-backbone+head_ms-range-1x_coco.py'
+model = dict(
+    backbone=dict(
+        stem_channels=128,
+        depth=101,
+        init_cfg=dict(type='Pretrained',
+                      checkpoint='open-mmlab://resnest101')))

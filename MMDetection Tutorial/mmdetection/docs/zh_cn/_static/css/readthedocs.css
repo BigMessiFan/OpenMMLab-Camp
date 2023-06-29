@@ -1,3 +1,6 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c93dd93fe456798c9bd7018120e58599bc516fa3d9d9177781b441848f2387da
-size 140
+.header-logo {
+    background-image: url("../image/mmdet-logo.png");
+    background-size: 156px 40px;
+    height: 40px;
+    width: 156px;
+}

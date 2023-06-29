@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:469cea16ce74d859d1b97e1f2c35ddb5a633ddf7fe8029befcb8cf78cd8fcd19
-size 480
+_base_ = './retinanet_r50_fpn_crop640-50e_coco.py'
+
+# model settings
+model = dict(
+    # `pad_size_divisor=128` ensures the feature maps sizes
+    # in `NAS_FPN` won't mismatch.
+    data_preprocessor=dict(pad_size_divisor=128),
+    neck=dict(
+        _delete_=True,
+        type='NASFPN',
+        in_channels=[256, 512, 1024, 2048],
+        out_channels=256,
+        num_outs=5,
+        stack_times=7,
+        start_level=1,
+        norm_cfg=dict(type='BN', requires_grad=True)))

@@ -1,3 +1,19 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:270c5ea3065400f2d84ca6413bc00177a043fa112c8d07f41b8df6dfc19b0cdd
-size 414
+_base_ = './grid-rcnn_r50_fpn_gn-head_2x_coco.py'
+
+# training schedule
+max_epochs = 12
+train_cfg = dict(max_epochs=max_epochs)
+
+# learning rate
+param_scheduler = [
+    dict(
+        type='LinearLR', start_factor=0.0001, by_epoch=False, begin=0,
+        end=500),
+    dict(
+        type='MultiStepLR',
+        begin=0,
+        end=max_epochs,
+        by_epoch=True,
+        milestones=[8, 11],
+        gamma=0.1)
+]

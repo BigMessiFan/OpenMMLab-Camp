@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:daa0e4b138aa0c8e0cd26add624963e4829a317f5ec4765ace35e3d6be79343e
-size 505
+_base_ = './yolov8_l_mask-refine_syncbn_fast_8xb16-500e_coco.py'
+
+# This config use refining bbox and `YOLOv5CopyPaste`.
+# Refining bbox means refining bbox by mask while loading annotations and
+# transforming after `YOLOv5RandomAffine`
+
+deepen_factor = 1.00
+widen_factor = 1.25
+
+model = dict(
+    backbone=dict(deepen_factor=deepen_factor, widen_factor=widen_factor),
+    neck=dict(deepen_factor=deepen_factor, widen_factor=widen_factor),
+    bbox_head=dict(head_module=dict(widen_factor=widen_factor)))

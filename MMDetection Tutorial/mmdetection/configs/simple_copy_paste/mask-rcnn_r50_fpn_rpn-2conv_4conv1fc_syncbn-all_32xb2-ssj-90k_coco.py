@@ -1,3 +1,18 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:831706c5c098920801a3d50b9ec23201361315f1618fc4690a817ccbe1867f55
-size 491
+_base_ = 'mask-rcnn_r50_fpn_rpn-2conv_4conv1fc_syncbn-all_32xb2-ssj-270k_coco.py'  # noqa
+
+# training schedule for 90k
+max_iters = 90000
+
+# learning rate policy
+# lr steps at [0.9, 0.95, 0.975] of the maximum iterations
+param_scheduler = [
+    dict(
+        type='LinearLR', start_factor=0.067, by_epoch=False, begin=0, end=500),
+    dict(
+        type='MultiStepLR',
+        begin=0,
+        end=90000,
+        by_epoch=False,
+        milestones=[81000, 85500, 87750],
+        gamma=0.1)
+]

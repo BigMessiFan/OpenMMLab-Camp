@@ -1,3 +1,14 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:663b5a878e8969b68787f7e65e81ab625b2d004d6a43d90ea5b31095205c573e
-size 426
+_base_ = './mask-rcnn_x101-32x4d_fpn_2x_coco.py'
+model = dict(
+    backbone=dict(
+        type='ResNeXt',
+        depth=101,
+        groups=64,
+        base_width=4,
+        num_stages=4,
+        out_indices=(0, 1, 2, 3),
+        frozen_stages=1,
+        norm_cfg=dict(type='BN', requires_grad=True),
+        style='pytorch',
+        init_cfg=dict(
+            type='Pretrained', checkpoint='open-mmlab://resnext101_64x4d')))

@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e5612d74e8fb41b7fb81cf64e725ea48e93b42524b57c361cad4f5d9a6d814ce
-size 349
+_base_ = 'retinanet_pvt-t_fpn_1x_coco.py'
+model = dict(
+    backbone=dict(
+        num_layers=[3, 8, 27, 3],
+        init_cfg=dict(checkpoint='https://github.com/whai362/PVT/'
+                      'releases/download/v2/pvt_large.pth')))
+# Enable automatic-mixed-precision training with AmpOptimWrapper.
+optim_wrapper = dict(type='AmpOptimWrapper')

@@ -1,3 +1,6 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a8b35bf7cba97407684a69ce7e2cecc600dfa88e2898dc13c2de0abd59f25bd7
-size 198
+_base_ = './fovea_r50_fpn_4xb4-2x_coco.py'
+model = dict(
+    backbone=dict(
+        depth=101,
+        init_cfg=dict(type='Pretrained',
+                      checkpoint='torchvision://resnet101')))

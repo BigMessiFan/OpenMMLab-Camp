@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5bb4149d1f0d37c6d3bace40a20b396cbcbf263551f45da81c87666c67d4e36c
-size 418
+_base_ = [
+    '../_base_/models/mask-rcnn_r50_fpn.py',
+    '../_base_/datasets/coco_instance.py',
+    '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py'
+]
+
+model = dict(
+    backbone=dict(
+        frozen_stages=0,
+        norm_cfg=dict(type='SyncBN', requires_grad=True),
+        norm_eval=False,
+        init_cfg=dict(
+            type='Pretrained', checkpoint='./mocov2_r50_800ep_pretrain.pth')))

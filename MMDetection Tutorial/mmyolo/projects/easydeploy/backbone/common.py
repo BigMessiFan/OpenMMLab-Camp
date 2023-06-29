@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f5a67c7df3e8f17cd26ebdbb131fb7f36280bccce8278d63534b9a6825fcfa53
-size 444
+import torch
+import torch.nn as nn
+from torch import Tensor
+
+
+class DeployC2f(nn.Module):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__()
+
+    def forward(self, x: Tensor) -> Tensor:
+        x_main = self.main_conv(x)
+        x_main = [x_main, x_main[:, self.mid_channels:, ...]]
+        x_main.extend(blocks(x_main[-1]) for blocks in self.blocks)
+        x_main.pop(1)
+        return self.final_conv(torch.cat(x_main, 1))

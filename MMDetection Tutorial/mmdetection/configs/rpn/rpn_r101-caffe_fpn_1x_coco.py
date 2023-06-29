@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:066d1196e3c5812b93c61ff207e88e14c71549c3e11295902e3698448ad769b2
-size 216
+_base_ = './rpn_r50-caffe_fpn_1x_coco.py'
+model = dict(
+    backbone=dict(
+        depth=101,
+        init_cfg=dict(
+            type='Pretrained',
+            checkpoint='open-mmlab://detectron2/resnet101_caffe')))

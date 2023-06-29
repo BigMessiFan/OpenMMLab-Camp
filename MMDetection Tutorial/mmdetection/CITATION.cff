@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:925ca8453f8ce1d5b9942822766e5c1e6714c3e515e03ddef75834dfb92cc1e3
-size 273
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - name: "MMDetection Contributors"
+title: "OpenMMLab Detection Toolbox and Benchmark"
+date-released: 2018-08-22
+url: "https://github.com/open-mmlab/mmdetection"
+license: Apache-2.0

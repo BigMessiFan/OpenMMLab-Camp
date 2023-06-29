@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:4af273398e7afa07e2ff0de7b9be1397bf97c859f97f8046428d06aba8308d1d
-size 228
+_base_ = './solo_r50_fpn_8xb8-lsj-200e_coco.py'
+
+model = dict(
+    backbone=dict(
+        depth=18,
+        init_cfg=dict(type='Pretrained', checkpoint='torchvision://resnet18')),
+    neck=dict(in_channels=[64, 128, 256, 512]))

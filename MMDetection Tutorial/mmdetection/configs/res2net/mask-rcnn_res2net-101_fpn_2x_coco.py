@@ -1,3 +1,10 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2a72c5fd65cd98aad37f0d7f9b366448e22cbb34f4d692e5d3cffa5a1ecb5313
-size 287
+_base_ = '../mask_rcnn/mask-rcnn_r50_fpn_2x_coco.py'
+model = dict(
+    backbone=dict(
+        type='Res2Net',
+        depth=101,
+        scales=4,
+        base_width=26,
+        init_cfg=dict(
+            type='Pretrained',
+            checkpoint='open-mmlab://res2net101_v1d_26w_4s')))

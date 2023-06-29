@@ -1,3 +1,6 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:09dc99103529054003b81378e5d42c243880e8746aa4a409e864474094b4e603
-size 83
+mmcv>=2.0.0rc4,<2.1.0
+mmengine>=0.7.1,<1.0.0
+scipy
+torch
+torchvision
+urllib3<2.0.0

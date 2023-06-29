@@ -1,3 +1,4 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e355703ce17a51bb63cfc67089aedab4a881fe25fdadd14c8b87e219c7f7c942
-size 163
+_base_ = '../mask_rcnn/mask-rcnn_r101_fpn_1x_coco.py'
+model = dict(
+    backbone=dict(
+        norm_cfg=dict(type='SyncBN', requires_grad=True), norm_eval=False))
